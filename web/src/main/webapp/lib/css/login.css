@@ -1,0 +1,8 @@
+#jumbotron{
+    height: 300px;
+}
+
+#loginTitle {
+    border: solid 0px teal;
+    border-bottom-width: 2px;
+}
