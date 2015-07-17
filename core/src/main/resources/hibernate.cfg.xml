@@ -27,14 +27,6 @@
         <!--<mapping resource="User.hbm.xml"/>-->
         <mapping class="com.tw.core.entity.User"/>
         <mapping class="com.tw.core.entity.Employee"/>
-        <!--<mapping class="com.tw.core.domain.CourseCustomerRelationsEntity"/>-->
-        <!--<mapping class="com.tw.core.domain.CoursesEntity"/>-->
-        <!--<mapping class="com.tw.core.domain.CustomersEntity"/>-->
-        <!--<mapping class="com.tw.core.domain.EmployeesEntity"/>-->
-        <!--<mapping class="com.tw.core.domain.SchedulesEntity"/>-->
-        <!--<mapping class="com.tw.core.domain.UsersEntity"/>-->
-
-        <!--<mapping class="com.tw.core.entity.Admin"/>-->
 
     </session-factory>
 

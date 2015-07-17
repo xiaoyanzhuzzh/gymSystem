@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class SessionController {
-//    @Autowired
-//    private AdminService adminService;
+
     @Autowired
     private UserService userService;
 
@@ -32,6 +31,7 @@ public class SessionController {
 
         if(userService.verifyUserInfo(name, password)) {
 
+            System.out.println("++++++++");
             request.getSession().setAttribute("currentUser", name);
         }
 
@@ -39,7 +39,8 @@ public class SessionController {
 
         if(url.equals("http://localhost:8080/web/login")) {
 
-            url = "/users/";
+            url = "/employees";
+            System.out.println(url + "++++++++++++++++++++");
             return new ModelAndView("redirect:" + url);
         } else {
 

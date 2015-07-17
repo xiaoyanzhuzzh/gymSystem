@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(value="/employees")
 public class EmployeeController {
@@ -14,15 +16,27 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAllUsers(){
+    public ModelAndView getAllUsers(HttpServletRequest request){
 
-        return new ModelAndView("index", "employees", employeeService.getEmployees());
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            return new ModelAndView("index", "employees", employeeService.getEmployees());
+        }
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getCreateUserPage(){
+    public ModelAndView getCreateUserPage(HttpServletRequest request){
 
-        return new ModelAndView("createUser");
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            return new ModelAndView("createUser");
+        }
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -38,18 +52,32 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteUser(@PathVariable int id){
+    public ModelAndView deleteUser(@PathVariable int id,
+                                   HttpServletRequest request){
 
-        employeeService.deleteEmployeeById(id);
+        if(request.getSession().getAttribute("currentUser") == null){
 
-        return new ModelAndView("redirect:/employees/");
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            employeeService.deleteEmployeeById(id);
+            return new ModelAndView("redirect:/employees/");
+        }
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public ModelAndView getUpdateUserAge(@PathVariable int id){
-        Employee employee = employeeService.getEmployeeById(id);
+    public ModelAndView getUpdateUserAge(@PathVariable int id,
+                                         HttpServletRequest request){
+
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            Employee employee = employeeService.getEmployeeById(id);
+            return new ModelAndView("updateEmployee", "employee", employee);
+        }
         //根据employee中的user_id去User表中去找到user,将其放到页面
-        return new ModelAndView("updateEmployee", "employee", employee);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

@@ -28,6 +28,7 @@ public class User {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
     @Id
     @GeneratedValue
     public int getId() {

@@ -91,7 +91,9 @@ public class UserDao {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new UserDao().getUsers().get(0).getId());
-    }
+//    public static void main(String[] args) {
+//        User user = new User("zhaolele", EncryptionHelper.md5("111"), );
+//        new UserDao().updateUser(user);
+//        System.out.println(new UserDao().getUsers().get(0).getId());
+//    }
 }
