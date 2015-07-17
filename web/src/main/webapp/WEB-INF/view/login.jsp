@@ -18,7 +18,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">&nbsp;</div>
+                <div class="col-md-12">
+                    <a href="/web/register">Register</a>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-8">

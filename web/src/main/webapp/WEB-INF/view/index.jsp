@@ -11,7 +11,6 @@
     <div class="jumbotron">
         <nav class="navbar navbar-default">
             <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -21,8 +20,6 @@
                     </button>
                     <a class="navbar-brand" href="#">用户管理系统</a>
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/web/logout">Logout</a></li>
@@ -31,7 +28,7 @@
             </div>
         </nav>
         <div class="container">
-            <div><a href="/web/users/create">addUser</a></div>
+            <div><a href="/web/employees/create">addUser</a></div>
             <table class="table table-bordered">
                 <caption><h2>用户信息表</h2></caption>
                 <thead>
@@ -44,15 +41,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${users}" var="user">
+                    <c:forEach items="${employees}" var="employee">
                         <tr>
-                            <td>${user.name}</td>
-                            <td>${user.gender}</td>
-                            <td>${user.age}</td>
-                            <td>${user.email}</td>
+                            <td>${employee.name}</td>
+                            <td>${employee.gender}</td>
+                            <td>${employee.role}</td>
+                            <td>${employee.age}</td>
+                            <td>${employee.email}</td>
                             <td>
-                                <a href="/web/users/delete/${user.id}">delete</a>
-                                <a href="/web/users/update/${user.id}">update</a>
+                                <a href="/web/employees/delete/${employee.id}">delete</a>
+                                <a href="/web/employees/update/${employee.id}">update</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -60,7 +58,5 @@
             </table>
         </div>
     </div>
-    <%--<spring:url value="/lib/js/bootstrap.min.js" var="bootstrapJs" />--%>
-    <%--<script src="${bootstrapJs}"></script>--%>
 </body>
 </html>

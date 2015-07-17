@@ -30,7 +30,6 @@ public class SessionController {
                               @RequestParam String password,
                               HttpServletRequest request){
 
-
         if(userService.verifyUserInfo(name, password)) {
 
             request.getSession().setAttribute("currentUser", name);

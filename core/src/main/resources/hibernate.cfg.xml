@@ -8,15 +8,10 @@
     <session-factory >
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class"
-                >com.mysql.jdbc.Driver</property>
-        <property name="connection.url"
-                >jdbc:mysql://localhost:3306/user_management</property>
-        <property name="connection.username"
-                >root</property>
-        <property name="connection.password"
-                ></property>
-
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/gym_system</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size"
                 >10</property>
@@ -31,7 +26,15 @@
 
         <!--<mapping resource="User.hbm.xml"/>-->
         <mapping class="com.tw.core.entity.User"/>
-        <mapping class="com.tw.core.entity.Admin"/>
+        <mapping class="com.tw.core.entity.Employee"/>
+        <!--<mapping class="com.tw.core.domain.CourseCustomerRelationsEntity"/>-->
+        <!--<mapping class="com.tw.core.domain.CoursesEntity"/>-->
+        <!--<mapping class="com.tw.core.domain.CustomersEntity"/>-->
+        <!--<mapping class="com.tw.core.domain.EmployeesEntity"/>-->
+        <!--<mapping class="com.tw.core.domain.SchedulesEntity"/>-->
+        <!--<mapping class="com.tw.core.domain.UsersEntity"/>-->
+
+        <!--<mapping class="com.tw.core.entity.Admin"/>-->
 
     </session-factory>
 

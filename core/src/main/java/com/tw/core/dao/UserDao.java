@@ -20,6 +20,16 @@ public class UserDao {
         return user;
     }
 
+    public User getUserByName(String name) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        List<User> users = session.createQuery("from User where name =?").setParameter(0, name).list();
+        System.out.println(users);
+        session.close();
+        return users.get(0);
+    }
+
     public List<User> getUsers(){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -82,7 +92,6 @@ public class UserDao {
     }
 
     public static void main(String[] args) {
-        User user = new User(1, "张志慧", "female", 23, "zhzhang@outllok.com", EncryptionHelper.md5("123456"));
-        new UserDao().updateUser(user);
+        System.out.println(new UserDao().getUserById(1));
     }
 }

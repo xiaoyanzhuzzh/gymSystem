@@ -13,14 +13,14 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-//    @Autowired
-//    public  UserService(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-
     public User getUserById(int id) {
 
         return userDao.getUserById(id);
+    }
+
+    public User getUserByName(String name) {
+
+        return userDao.getUserByName(name);
     }
 
     public List<User> getUsers() {

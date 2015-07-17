@@ -32,12 +32,18 @@
             </div>
         </nav>
         <div class="container">
-            <form class="form-horizontal" action="/web/users/update" method="post">
-                <input type="hidden" value="${user.id}" name="id"><br>
+            <form class="form-horizontal" action="/web/employees/update" method="post">
+                <input type="hidden" value="${employee.id}" name="id"><br>
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="name" name="name" value="${user.name}">
+                        <input type="text" class="form-control" id="name" name="name" value="${employee.name}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Role</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="role" name="role" value="${employee.role}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Gender</label>
-                    <c:if test="${user.gender == 'male'}">
+                    <c:if test="${employee.gender == 'male'}">
                         <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="gender"  value="female"> female
@@ -58,7 +64,7 @@
                             </label>
                         </div>
                     </c:if>
-                    <c:if test="${user.gender == 'female'}">
+                    <c:if test="${employee.gender == 'female'}">
                         <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="gender"  value="female" checked> female
@@ -72,13 +78,13 @@
                 <div class="form-group">
                     <label for="age" class="col-sm-2 control-label">Age</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="age" name="age" value="${user.age}">
+                        <input type="text" class="form-control" id="age" name="age" value="${employee.age}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-4">
-                        <input type="email" class="form-control" id="email" name="email" value="${user.email}">
+                        <input type="email" class="form-control" id="email" name="email" value="${employee.email}">
                     </div>
                 </div>
                 <div class="form-group">

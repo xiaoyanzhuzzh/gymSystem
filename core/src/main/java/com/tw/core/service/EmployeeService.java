@@ -1,7 +1,37 @@
 package com.tw.core.service;
 
-/**
- * Created by zhihuizhang on 7/16/15.
- */
+import com.tw.core.dao.EmployeeDao;
+import com.tw.core.entity.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+@Service
 public class EmployeeService {
+
+    @Autowired
+    private EmployeeDao employeeDao;
+
+
+    public void createEmployee(Employee employee) {
+
+        employeeDao.createEmployee(employee);
+    }
+
+    public List<Employee> getEmployees() {
+
+        return employeeDao.getEmployees();
+    }
+
+    public void deleteEmployeeById(int id) {
+
+        employeeDao.deleteEmployeeById(id);
+    }
+
+    public Employee getEmployeeById(int id) {
+
+        return employeeDao.getEmployeeById(id);
+    }
 }
