@@ -41,16 +41,13 @@ public class RegisterController {
                               HttpServletRequest request){
 
 
-//        User user = new User(name, EncryptionHelper.md5(password), );
-//        userService.createUser(user);
-//        User currentUser = userService.getUserByName(nickname);
-//
-//        Employee employee = new Employee(name, gender, age, email, role);
-//        employeeService.createEmployee(employee);
-//        employeeService.getEmployeeById()
-//
-//        request.getSession().setAttribute("currentUser", name);
+        Employee employee = new Employee(name, gender, age, email, role);
+        employeeService.createEmployee(employee);
 
-        return new ModelAndView("redirect:/users/");
+        User user = new User(nickname, EncryptionHelper.md5(password), employee);
+        userService.createUser(user);
+        request.getSession().setAttribute("currentUser", name);
+
+        return new ModelAndView("redirect:/employees");
     }
 }

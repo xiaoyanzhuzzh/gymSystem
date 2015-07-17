@@ -10,6 +10,17 @@ public class User {
     private String name;
     private String password;
     private Employee employee;
+
+    public User() {
+
+    }
+
+    public User(String name, String password, Employee employee) {
+        this.name = name;
+        this.password = password;
+        this.employee = employee;
+    }
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Employee getEmployee() {
         return employee;
