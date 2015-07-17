@@ -92,6 +92,6 @@ public class UserDao {
     }
 
     public static void main(String[] args) {
-        System.out.println(new UserDao().getUserById(1));
+        System.out.println(new UserDao().getUsers().get(0).getId());
     }
 }
