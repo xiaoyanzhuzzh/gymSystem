@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class RegisterController {
-    //    @Autowired
-//    private AdminService adminService;
+
     @Autowired
     private UserService userService;
 
