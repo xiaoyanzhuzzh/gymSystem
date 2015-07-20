@@ -37,6 +37,15 @@ public class Employee {
         this.role = role;
     }
 
+    public Employee(int id, String name, String gender, int age, String email, String role) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.email = email;
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }
@@ -83,5 +92,17 @@ public class Employee {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
