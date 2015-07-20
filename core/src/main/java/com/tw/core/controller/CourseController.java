@@ -1,11 +1,15 @@
 package com.tw.core.controller;
 
+import com.tw.core.entity.Course;
 import com.tw.core.entity.Employee;
+import com.tw.core.entity.User;
+import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.CourseService;
 import com.tw.core.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +37,7 @@ public class CourseController {
     }
 
     @RequestMapping(value="/create", method= RequestMethod.GET)
-    public ModelAndView createCourse(HttpServletRequest request) {
+    public ModelAndView getCreateCoursePage(HttpServletRequest request) {
 
         if(request.getSession().getAttribute("currentUser") == null){
 
@@ -42,5 +46,15 @@ public class CourseController {
 
             return new ModelAndView("createCourse", "coaches", employeeService.getAllCoaches());
         }
+    }
+
+    @RequestMapping(value="/create", method= RequestMethod.POST)
+    public ModelAndView createCourse(@RequestParam String name,
+                                     @RequestParam String coach) {
+
+        Employee employee = employeeService.getEmployeeByNameAndType(coach, "coach");
+        courseService.createCourse(new Course(name, employee));
+
+        return new ModelAndView("redirect:/courses/");
     }
 }
