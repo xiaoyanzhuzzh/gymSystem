@@ -1,9 +1,6 @@
 package com.tw.core.dao;
 
-
 import com.tw.core.entity.Employee;
-import com.tw.core.entity.User;
-import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -24,34 +21,6 @@ public class EmployeeDao {
         session.close();
     }
 
-    public void updateUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        session.update(user);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    public Boolean verifyUserInfo(String name, String password) {
-        Boolean result = false;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        String hql = "from User where name=? and password=?";
-        Query query = session.createQuery(hql);
-
-        query.setString(0, name);
-        query.setString(1, EncryptionHelper.md5(password));
-
-        List<User> users = query.list();
-        if(users.size() == 1) {
-            result = true;
-        }
-        session.close();
-
-        return result;
-    }
 
     public List<Employee> getEmployees() {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -83,8 +52,37 @@ public class EmployeeDao {
         return employee;
     }
 
+    public List<Employee> getAllCoaches() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-    public static void main(String[] args) {
-        System.out.println(new EmployeeDao().getEmployeeById(1));
+        String hql = "from Employee where role=?";
+        Query query = session.createQuery(hql);
+
+        query.setString(0, "coach");
+
+        List<Employee> coaches = query.list();
+
+        session.close();
+        return coaches;
+
     }
+
+    public Employee getEmployeeByNameAndRole(String name, String role) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from Employee where name=? and role=?";
+        Query query = session.createQuery(hql);
+
+        query.setString(0, name);
+        query.setString(1, role);
+
+        List<Employee> coaches = query.list();
+
+        session.close();
+        return coaches.get(0);
+    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(new EmployeeDao().getAllCoaches().size());
+//    }
 }

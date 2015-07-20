@@ -24,9 +24,9 @@
         <property name="show_sql"
                 >true</property>
 
-        <!--<mapping resource="User.hbm.xml"/>-->
         <mapping class="com.tw.core.entity.User"/>
         <mapping class="com.tw.core.entity.Employee"/>
+        <mapping class="com.tw.core.entity.Course"/>
 
     </session-factory>
 

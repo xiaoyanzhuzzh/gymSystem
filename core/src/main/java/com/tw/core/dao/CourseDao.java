@@ -22,20 +22,6 @@ public class CourseDao {
         return courses;
     }
 
-
-    public void deleteUserById(int id){
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        User user = (User) session.load(User.class, id);
-        session.delete(user);
-
-        session.getTransaction().commit();
-        session.close();
-    }
-
     public void updateUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 

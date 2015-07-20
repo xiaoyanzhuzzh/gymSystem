@@ -39,4 +39,9 @@ public class EmployeeService {
 
         return employeeDao.getAllCoaches();
     }
+
+    public Employee getEmployeeByNameAndType(String name, String role) {
+
+        return employeeDao.getEmployeeByNameAndRole(name, role);
+    }
 }

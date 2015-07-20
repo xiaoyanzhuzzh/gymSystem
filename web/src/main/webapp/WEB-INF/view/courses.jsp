@@ -42,10 +42,6 @@
                     <tr>
                         <td>${course.name}</td>
                         <td>${course.employee.name}</td>
-                        <td>
-                            <a href="/web/courses/delete/${course.id}">delete</a>
-                            <a href="/web/courses/update/${course.id}">update</a>
-                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
