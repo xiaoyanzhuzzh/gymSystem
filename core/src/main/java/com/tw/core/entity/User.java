@@ -21,7 +21,14 @@ public class User {
         this.employee = employee;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public User(int id, String name, String password, Employee employee) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.employee = employee;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
     public Employee getEmployee() {
         return employee;
     }

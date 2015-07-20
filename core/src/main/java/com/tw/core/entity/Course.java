@@ -36,7 +36,7 @@ public class Course {
         return name;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     public Employee getEmployee() {
         return employee;
