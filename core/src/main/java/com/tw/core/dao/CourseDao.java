@@ -1,5 +1,6 @@
 package com.tw.core.dao;
 
+import com.tw.core.entity.Course;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
@@ -12,24 +13,15 @@ import java.util.List;
 @Repository
 public class CourseDao {
 
-    public List<User> getCourses(){
+    public List<Course> getCourses(){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<User> users = session.createQuery("from Course").list();
+        List<Course> courses = session.createQuery("from Course").list();
 
         session.close();
-        return users;
+        return courses;
     }
 
-    public void createUser(User user){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        session.save(user);
-        session.getTransaction().commit();
-        session.close();
-    }
 
     public void deleteUserById(int id){
 
@@ -71,5 +63,15 @@ public class CourseDao {
         session.close();
 
         return result;
+    }
+
+    public void createCourse(Course course) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.save(course);
+        session.getTransaction().commit();
+        session.close();
     }
 }
