@@ -1,6 +1,8 @@
 package com.tw.core.controller;
 
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
+import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +36,18 @@ public class UserController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView UpdateUser(@RequestParam int id,
+                                   @RequestParam int employee_id,
+                                   @RequestParam String nickName,
                                    @RequestParam String name,
+                                   @RequestParam String role,
+                                   @RequestParam String password,
                                    @RequestParam String gender,
                                    @RequestParam int age,
-                                   @RequestParam String email,
-                                   @RequestParam String password){
-//        User user = new User(id, name, gender, age, email, EncryptionHelper.md5(password));
-//        userService.updateUser(user);
-//
+                                   @RequestParam String email){
+
+        Employee employee = new Employee(employee_id, name, gender, age, email, role);
+        userService.updateUser(new User(id, nickName, EncryptionHelper.md5(password), employee));
+
         return new ModelAndView("redirect:/users/");
     }
 }
