@@ -20,8 +20,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">健身房管理系统</a>
-                    <a class="navbar-brand" href="/web/courses/">健身房管理系统</a>
-                    <a class="navbar-brand" href="/web/schedules/">健身房管理系统</a>
+                    <a class="navbar-brand" href="/web/courses/">课程页</a>
+                    <a class="navbar-brand" href="/web/schedules/">课表页</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
