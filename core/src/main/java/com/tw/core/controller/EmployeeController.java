@@ -23,7 +23,7 @@ public class EmployeeController {
             return new ModelAndView("redirect:/login");
         } else {
 
-            return new ModelAndView("index", "employees", employeeService.getEmployees());
+            return new ModelAndView("employees", "employees", employeeService.getEmployees());
         }
     }
 
