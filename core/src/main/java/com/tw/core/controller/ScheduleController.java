@@ -43,18 +43,18 @@ public class ScheduleController {
         }
     }
 
-    @RequestMapping(value="/create", method=RequestMethod.POST)
-    public ModelAndView createSchedule(@RequestParam String courseName,
-                                       @RequestParam String time) {
-
-        Course course = courseService.getCourseByName(courseName);
-        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
-
-            scheduleService.createSchedule(new Schedule(time, course));
-        }
-
-        return new ModelAndView("redirect:/schedules/");
-    }
+//    @RequestMapping(value="/create", method=RequestMethod.POST)
+//    public ModelAndView createSchedule(@RequestParam String courseName,
+//                                       @RequestParam String time) {
+//
+//        Course course = courseService.getCourseByName(courseName);
+//        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
+//
+//            scheduleService.createSchedule(new Schedule(time, course));
+//        }
+//
+//        return new ModelAndView("redirect:/schedules/");
+//    }
 
     @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
     public ModelAndView getUpdateSchedulePage(@PathVariable int id,
@@ -69,19 +69,19 @@ public class ScheduleController {
         }
     }
 
-    @RequestMapping(value="/update", method=RequestMethod.POST)
-    public ModelAndView updateSchedule(@RequestParam int id,
-                                       @RequestParam String courseName,
-                                       @RequestParam String time) {
-
-        Course course = courseService.getCourseByName(courseName);
-        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
-
-            scheduleService.updateSchedule(new Schedule(id, time, course));
-        }
-
-        return new ModelAndView("redirect:/schedules/");
-    }
+//    @RequestMapping(value="/update", method=RequestMethod.POST)
+//    public ModelAndView updateSchedule(@RequestParam int id,
+//                                       @RequestParam String courseName,
+//                                       @RequestParam String time) {
+//
+//        Course course = courseService.getCourseByName(courseName);
+//        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
+//
+//            scheduleService.updateSchedule(new Schedule(id, time, course));
+//        }
+//
+//        return new ModelAndView("redirect:/schedules/");
+//    }
 
 //    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 //    public ModelAndView deleteUser(@PathVariable int id){

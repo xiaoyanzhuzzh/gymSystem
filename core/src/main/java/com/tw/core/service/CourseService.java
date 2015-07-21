@@ -24,8 +24,18 @@ public class CourseService {
         courseDao.createCourse(course);
     }
 
-    public Course getCourseByName(String name) {
+    public Boolean getCourseByName(String name) {
 
         return courseDao.getCourseByName(name);
+    }
+
+    public Course getCourseById(int id) {
+
+        return courseDao.getCourseById(id);
+    }
+
+    public void updateCourse(Course course) {
+
+        courseDao.updateCourse(course);
     }
 }

@@ -22,35 +22,6 @@ public class CourseDao {
         return courses;
     }
 
-    public void updateUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        session.beginTransaction();
-
-        session.update(user);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    public Boolean verifyUserInfo(String name, String password) {
-        Boolean result = false;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        String hql = "from User where name=? and password=?";
-        Query query = session.createQuery(hql);
-
-        query.setString(0, name);
-        query.setString(1, EncryptionHelper.md5(password));
-
-        List<User> users = query.list();
-        if(users.size() == 1) {
-            result = true;
-        }
-        session.close();
-
-        return result;
-    }
-
     public void createCourse(Course course) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -61,17 +32,40 @@ public class CourseDao {
         session.close();
     }
 
-    public Course getCourseByName(String name) {
+    public Boolean getCourseByName(String name) {
+
+        Boolean result = false;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        String hql = "from Course where name=?";
+        String hql = "from User where name=?";
         Query query = session.createQuery(hql);
 
         query.setString(0, name);
 
         List<Course> courses = query.list();
-
+        if(courses.size() != 0) {
+            result = true;
+        }
         session.close();
-        return courses.get(0);
+
+        return result;
+    }
+
+    public Course getCourseById(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Course course = (Course) session.get(Course.class, id);
+        session.close();
+        return course;
+    }
+
+    public void updateCourse(Course course) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.update(course);
+        session.getTransaction().commit();
+        session.close();
     }
 }

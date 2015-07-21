@@ -36,7 +36,8 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>教练</th>
+                    <th><Coach></Coach></th>
+                    <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,10 @@
                     <tr>
                         <td>${course.name}</td>
                         <td>${course.employee.name}</td>
+                        <td>
+                                <%--<a href="/web/courses/delete/${course.id}">delete</a>--%>
+                            <a href="/web/courses/update/${course.id}">update</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

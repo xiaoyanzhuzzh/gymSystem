@@ -2,8 +2,6 @@ package com.tw.core.controller;
 
 import com.tw.core.entity.Course;
 import com.tw.core.entity.Employee;
-import com.tw.core.entity.User;
-import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.CourseService;
 import com.tw.core.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +48,42 @@ public class CourseController {
                                      @RequestParam String coach) {
 
         Employee employee = employeeService.getEmployeeByNameAndType(coach, "coach");
-        if(courseService.getCourseByName(name) == null){
+        if(!courseService.getCourseByName(name)){
 
             courseService.createCourse(new Course(name, employee));
         }
 
         return new ModelAndView("redirect:/courses/");
     }
+
+    @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
+    public ModelAndView getUpdateSchedulePage(@PathVariable int id,
+                                              HttpServletRequest request) {
+
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            ModelAndView modelAndView = new ModelAndView("updateCourse", "course", courseService.getCourseById(id));
+            modelAndView.addObject("coaches", employeeService.getAllCoaches());
+            return modelAndView;
+        }
+    }
+
+    @RequestMapping(value="/update", method=RequestMethod.POST)
+    public ModelAndView updateSchedule(@RequestParam int id,
+                                 @RequestParam String name,
+                                 @RequestParam int coachId) {
+//
+        Employee employee = employeeService.getEmployeeById(coachId);
+
+        if(!courseService.getCourseByName(name)) {
+
+            courseService.updateCourse(new Course(id, name, employee));
+        }
+
+        return new ModelAndView("redirect:/schedules/");
+    }
+
 }
