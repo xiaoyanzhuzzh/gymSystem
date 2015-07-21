@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -15,9 +17,15 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getAllUsers(){
+    public ModelAndView getAllUsers(HttpServletRequest request){
 
-        return new ModelAndView("users", "users", userService.getUsers());
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            return new ModelAndView("users", "users", userService.getUsers());
+        }
     }
 
 //    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
