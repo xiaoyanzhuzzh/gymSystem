@@ -1,7 +1,5 @@
 package com.tw.core.controller;
 
-import com.tw.core.helper.CookieHelper;
-import com.tw.core.service.AdminService;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +29,6 @@ public class SessionController {
 
         if(userService.verifyUserInfo(name, password)) {
 
-            System.out.println("++++++++");
             request.getSession().setAttribute("currentUser", name);
         }
 
@@ -39,8 +36,7 @@ public class SessionController {
 
         if(url.equals("http://localhost:8080/web/login")) {
 
-            url = "/employees";
-            System.out.println(url + "++++++++++++++++++++");
+            url = "/users/";
             return new ModelAndView("redirect:" + url);
         } else {
 
