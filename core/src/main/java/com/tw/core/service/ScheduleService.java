@@ -27,4 +27,14 @@ public class ScheduleService {
     public boolean getScheduleByCourseAndTime(Course course, String time) {
         return scheduleDao.getScheduleByCourseAndTime(course, time);
     }
+
+    public Schedule getScheduleById(int id) {
+
+        return scheduleDao.getScheduleById(id);
+    }
+
+    public void updateSchedule(Schedule schedule) {
+
+        scheduleDao.updateSchedule(schedule);
+    }
 }

@@ -3,7 +3,6 @@ package com.tw.core.dao;
 import com.tw.core.entity.Course;
 import com.tw.core.entity.Schedule;
 import com.tw.core.entity.User;
-import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -50,5 +49,25 @@ public class ScheduleDao {
         session.close();
 
         return result;
+    }
+
+    public Schedule getScheduleById(int id) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Schedule schedule = (Schedule) session.get(Schedule.class, id);
+        session.close();
+        return schedule;
+    }
+
+    public void updateSchedule(Schedule schedule) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.update(schedule);
+        session.getTransaction().commit();
+        session.close();
     }
 }
