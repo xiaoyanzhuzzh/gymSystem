@@ -41,12 +41,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="courseName" class="col-sm-2 control-label">Course</label>
+                <label for="courseId" class="col-sm-2 control-label">Course</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="courseName" id="courseName">
+                    <select class="form-control" name="courseId" id="courseId">
                         <option value="Course"> Course</option>
                         <c:forEach items="${courses}" var="course">
-                            <option value="${course.name}">${course.name}</option>
+                            <option value="${course.id}">${course.name}</option>
                         </c:forEach>
                     </select>
                 </div>

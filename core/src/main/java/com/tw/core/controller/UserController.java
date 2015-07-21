@@ -56,6 +56,6 @@ public class UserController {
         Employee employee = new Employee(employee_id, name, gender, age, email, role);
         userService.updateUser(new User(id, nickName, EncryptionHelper.md5(password), employee));
 
-        return new ModelAndView("redirect:/users/");
+        return new ModelAndView("redirect:/courses/");
     }
 }

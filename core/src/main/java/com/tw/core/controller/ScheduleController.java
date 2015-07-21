@@ -43,18 +43,18 @@ public class ScheduleController {
         }
     }
 
-//    @RequestMapping(value="/create", method=RequestMethod.POST)
-//    public ModelAndView createSchedule(@RequestParam String courseName,
-//                                       @RequestParam String time) {
-//
-//        Course course = courseService.getCourseByName(courseName);
-//        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
-//
-//            scheduleService.createSchedule(new Schedule(time, course));
-//        }
-//
-//        return new ModelAndView("redirect:/schedules/");
-//    }
+    @RequestMapping(value="/create", method=RequestMethod.POST)
+    public ModelAndView createSchedule(@RequestParam int courseId,
+                                       @RequestParam String time) {
+
+        Course course = courseService.getCourseById(courseId);
+        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
+
+            scheduleService.createSchedule(new Schedule(time, course));
+        }
+
+        return new ModelAndView("redirect:/schedules/");
+    }
 
     @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
     public ModelAndView getUpdateSchedulePage(@PathVariable int id,
