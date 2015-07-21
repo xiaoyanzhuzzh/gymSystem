@@ -1,6 +1,8 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Employee;
+import com.tw.core.entity.User;
+import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -67,7 +69,8 @@ public class EmployeeDao {
 
     }
 
-    public Employee getEmployeeByNameAndRole(String name, String role) {
+    public Boolean getEmployeeByNameAndRole(String name, String role) {
+        Boolean result = false;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         String hql = "from Employee where name=? and role=?";
@@ -76,10 +79,13 @@ public class EmployeeDao {
         query.setString(0, name);
         query.setString(1, role);
 
-        List<Employee> coaches = query.list();
-
+        List<Employee> employees = query.list();
+        if(employees.size() != 0) {
+            result = true;
+        }
         session.close();
-        return coaches.get(0);
+
+        return result;
     }
 //
 //    public static void main(String[] args) {

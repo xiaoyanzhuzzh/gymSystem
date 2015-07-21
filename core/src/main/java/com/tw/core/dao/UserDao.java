@@ -20,14 +20,23 @@ public class UserDao {
         return user;
     }
 
-    public User getUserByName(String name) {
+    public Boolean getUserByName(String name) {
 
+        Boolean result = false;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        List<User> users = session.createQuery("from User where name =?").setParameter(0, name).list();
-        System.out.println(users);
+        String hql = "from User where name=?";
+        Query query = session.createQuery(hql);
+
+        query.setParameter(0, name);
+
+        List<User> users = query.list();
+        if(users.size() != 0) {
+            result = true;
+        }
         session.close();
-        return users.get(0);
+
+        return result;
     }
 
     public List<User> getUsers(){

@@ -18,7 +18,7 @@ public class UserService {
         return userDao.getUserById(id);
     }
 
-    public User getUserByName(String name) {
+    public Boolean getUserByName(String name) {
 
         return userDao.getUserByName(name);
     }

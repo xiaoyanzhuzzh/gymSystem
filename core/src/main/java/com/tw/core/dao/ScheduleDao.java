@@ -2,7 +2,6 @@ package com.tw.core.dao;
 
 import com.tw.core.entity.Course;
 import com.tw.core.entity.Schedule;
-import com.tw.core.entity.User;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -42,8 +41,8 @@ public class ScheduleDao {
         query.setParameter("course", course);
         query.setParameter("time", time);
 
-        List<User> users = query.list();
-        if(users.size() != 0) {
+        List<Schedule> schedules = query.list();
+        if(schedules.size() != 0) {
             result = true;
         }
         session.close();

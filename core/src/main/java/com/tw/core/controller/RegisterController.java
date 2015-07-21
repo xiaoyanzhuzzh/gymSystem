@@ -43,10 +43,13 @@ public class RegisterController {
         Employee employee = new Employee(name, gender, age, email, role);
         employeeService.createEmployee(employee);
 
-        User user = new User(nickname, EncryptionHelper.md5(password), employee);
-        userService.createUser(user);
-        request.getSession().setAttribute("currentUser", name);
+        if (!userService.getUserByName(nickname)) {
 
+            User user = new User(nickname, EncryptionHelper.md5(password), employee);
+            userService.createUser(user);
+            request.getSession().setAttribute("currentUser", name);
+        }
+        
         return new ModelAndView("redirect:/employees");
     }
 }
