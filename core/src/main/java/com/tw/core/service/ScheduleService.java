@@ -1,7 +1,19 @@
 package com.tw.core.service;
 
-/**
- * Created by zhihuizhang on 7/21/15.
- */
+import com.tw.core.dao.ScheduleDao;
+import com.tw.core.entity.Schedule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
 public class ScheduleService {
+
+    @Autowired
+    private ScheduleDao scheduleDao;
+
+    public List<Schedule> getSchedules() {
+        return scheduleDao.getSchedules();
+    }
 }
