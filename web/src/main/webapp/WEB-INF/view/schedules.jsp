@@ -48,7 +48,7 @@
                         <td>${schedule.course.employee.name}</td>
                         <td>${schedule.time}</td>
                         <td>
-                            <a href="/web/schedules/delete/${schedule.id}">delete</a>
+                            <%--<a href="/web/schedules/delete/${schedule.id}">delete</a>--%>
                             <a href="/web/schedules/update/${schedule.id}">update</a>
                         </td>
                     </tr>

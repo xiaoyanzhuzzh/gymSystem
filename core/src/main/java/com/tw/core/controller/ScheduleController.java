@@ -82,4 +82,13 @@ public class ScheduleController {
 
         return new ModelAndView("redirect:/schedules/");
     }
+
+//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+//    public ModelAndView deleteUser(@PathVariable int id){
+//
+//        scheduleService.deleteScheduleById(id);
+//
+//        return new ModelAndView("redirect:/schedules/");
+//    }
+
 }

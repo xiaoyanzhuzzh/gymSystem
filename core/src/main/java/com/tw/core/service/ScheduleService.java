@@ -37,4 +37,9 @@ public class ScheduleService {
 
         scheduleDao.updateSchedule(schedule);
     }
+
+    public void deleteScheduleById(int id) {
+
+        scheduleDao.deleteScheduleById(id);
+    }
 }
