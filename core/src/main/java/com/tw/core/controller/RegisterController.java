@@ -49,7 +49,7 @@ public class RegisterController {
             userService.createUser(user);
             request.getSession().setAttribute("currentUser", name);
         }
-        
+
         return new ModelAndView("redirect:/employees");
     }
 }

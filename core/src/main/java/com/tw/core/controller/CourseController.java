@@ -43,18 +43,18 @@ public class CourseController {
         }
     }
 
-//    @RequestMapping(value="/create", method= RequestMethod.POST)
-//    public ModelAndView createCourse(@RequestParam String name,
-//                                     @RequestParam String coach) {
+    @RequestMapping(value="/create", method= RequestMethod.POST)
+    public ModelAndView createCourse(@RequestParam String name,
+                                     @RequestParam int coachId) {
 
-//        Employee employee = employeeService.getEmployeeByNameAndType(coach, "coach");
-//        if(!courseService.getCourseByName(name)){
-//
-//            courseService.createCourse(new Course(name, employee));
-//        }
-//
-//        return new ModelAndView("redirect:/courses/");
-//    }
+        Employee employee = employeeService.getEmployeeById(coachId);
+        if(!courseService.getCourseByName(name)){
+
+            courseService.createCourse(new Course(name, employee));
+        }
+
+        return new ModelAndView("redirect:/courses/");
+    }
 
     @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
     public ModelAndView getUpdateSchedulePage(@PathVariable int id,
