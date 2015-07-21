@@ -8,19 +8,19 @@ import java.util.Date;
 public class Schedule {
 
     private int id;
-    private Date time;
+    private String time;
     private Course course;
 
     public Schedule() {
     }
 
-    public Schedule(Date time, Course course) {
+    public Schedule(String time, Course course) {
 
         this.time = time;
         this.course = course;
     }
 
-    public Schedule(int id, Date time, Course course) {
+    public Schedule(int id, String time, Course course) {
         this.id = id;
         this.time = time;
         this.course = course;
@@ -34,7 +34,7 @@ public class Schedule {
     }
 
     @Column(name = "time")
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -48,7 +48,7 @@ public class Schedule {
         this.id = id;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

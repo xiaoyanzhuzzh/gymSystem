@@ -50,10 +50,13 @@ public class ScheduleController {
 
     @RequestMapping(value="/create", method=RequestMethod.POST)
     public ModelAndView createSchedule(@RequestParam String courseName,
-                                       @RequestParam Date time) {
+                                       @RequestParam String time) {
 
         Course course = courseService.getCourseByName(courseName);
-        scheduleService.createSchedule(new Schedule(time, course));
+        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
+
+            scheduleService.createSchedule(new Schedule(time, course));
+        }
 
         return new ModelAndView("redirect:/schedules/");
     }
