@@ -60,4 +60,18 @@ public class CourseDao {
         session.getTransaction().commit();
         session.close();
     }
+
+    public Course getCourseByName(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from Course where name=?";
+        Query query = session.createQuery(hql);
+
+        query.setString(0, name);
+
+        List<Course> courses = query.list();
+
+        session.close();
+        return courses.get(0);
+    }
 }

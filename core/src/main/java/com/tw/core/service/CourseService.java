@@ -2,6 +2,7 @@ package com.tw.core.service;
 
 import com.tw.core.dao.CourseDao;
 import com.tw.core.entity.Course;
+import com.tw.core.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class CourseService {
     public void createCourse(Course course) {
 
         courseDao.createCourse(course);
+    }
+
+    public Course getCourseByName(String name) {
+
+        return courseDao.getCourseByName(name);
     }
 }
