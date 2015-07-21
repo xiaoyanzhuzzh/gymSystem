@@ -82,4 +82,16 @@ public class ScheduleDao {
         session.getTransaction().commit();
         session.close();
     }
+
+    public List<Schedule> getScheduleByCourse(Course course) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from Schedule where course=:course";
+        Query query = session.createQuery(hql);
+
+        query.setParameter("course", course);
+
+        return query.list();
+    }
 }

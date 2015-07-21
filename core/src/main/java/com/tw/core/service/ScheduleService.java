@@ -42,4 +42,9 @@ public class ScheduleService {
 
         scheduleDao.deleteScheduleById(id);
     }
+
+    public List<Schedule> getSchedulesByCourse(Course course) {
+
+        return scheduleDao.getScheduleByCourse(course);
+    }
 }

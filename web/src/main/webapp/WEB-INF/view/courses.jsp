@@ -37,7 +37,7 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th><Coach></Coach></th>
+                    <th>Coach</th>
                     <th>Operation</th>
                 </tr>
                 </thead>
