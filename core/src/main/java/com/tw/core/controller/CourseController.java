@@ -75,7 +75,7 @@ public class CourseController {
     public ModelAndView updateSchedule(@RequestParam int id,
                                  @RequestParam String name,
                                  @RequestParam int coachId) {
-//
+
         Employee employee = employeeService.getEmployeeById(coachId);
 
         if(!courseService.getCourseByName(name)) {
