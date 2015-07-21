@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Coach</label>
+                    <label for="coach" class="col-sm-2 control-label">Coach</label>
                     <div class="col-sm-4">
-                        <select class="form-control" name="coach">
+                        <select class="form-control" id="coach" name="coach">
                             <option value="Coach"> Coach</option>
                             <c:forEach items="${coaches}" var="coach">
                                 <option value="${coach.name}">${coach.name}</option>
