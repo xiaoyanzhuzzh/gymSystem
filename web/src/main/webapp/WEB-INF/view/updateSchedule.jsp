@@ -42,9 +42,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="courseName" class="col-sm-2 control-label">Course</label>
+                <label for="courseId" class="col-sm-2 control-label">Course</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="courseName" name="courseName" value="${schedule.course.name}" readonly="readonly">
+                    <select class="form-control" id="courseId" name="courseId">
+                        <option value="${schedule.course.id}"> ${schedule.course.name}</option>
+                        <c:forEach items="${courses}" var="course">
+                            <option value="${course.id}">${course.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="form-group">

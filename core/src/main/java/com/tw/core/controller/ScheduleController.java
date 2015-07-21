@@ -65,30 +65,32 @@ public class ScheduleController {
             return new ModelAndView("redirect:/login");
         } else {
 
-            return new ModelAndView("updateSchedule", "schedule", scheduleService.getScheduleById(id));
+            ModelAndView modelAndView = new ModelAndView("updateSchedule", "schedule", scheduleService.getScheduleById(id));
+            modelAndView.addObject("courses", courseService.getCourses());
+            return modelAndView;
         }
     }
 
-//    @RequestMapping(value="/update", method=RequestMethod.POST)
-//    public ModelAndView updateSchedule(@RequestParam int id,
-//                                       @RequestParam String courseName,
-//                                       @RequestParam String time) {
-//
-//        Course course = courseService.getCourseByName(courseName);
-//        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
-//
-//            scheduleService.updateSchedule(new Schedule(id, time, course));
-//        }
-//
-//        return new ModelAndView("redirect:/schedules/");
-//    }
+    @RequestMapping(value="/update", method=RequestMethod.POST)
+    public ModelAndView updateSchedule(@RequestParam int id,
+                                       @RequestParam int courseId,
+                                       @RequestParam String time) {
 
-//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-//    public ModelAndView deleteUser(@PathVariable int id){
-//
-//        scheduleService.deleteScheduleById(id);
-//
-//        return new ModelAndView("redirect:/schedules/");
-//    }
+        Course course = courseService.getCourseById(courseId);
+        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
+
+            scheduleService.updateSchedule(new Schedule(id, time, course));
+        }
+
+        return new ModelAndView("redirect:/schedules/");
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteUser(@PathVariable int id){
+
+        scheduleService.deleteScheduleById(id);
+
+        return new ModelAndView("redirect:/schedules/");
+    }
 
 }
