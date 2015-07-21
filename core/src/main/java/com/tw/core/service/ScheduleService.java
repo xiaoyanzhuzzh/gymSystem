@@ -14,6 +14,12 @@ public class ScheduleService {
     private ScheduleDao scheduleDao;
 
     public List<Schedule> getSchedules() {
+
         return scheduleDao.getSchedules();
+    }
+
+    public void createSchedule(Schedule schedule) {
+
+        scheduleDao.createSchedule(schedule);
     }
 }

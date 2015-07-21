@@ -18,4 +18,14 @@ public class ScheduleDao {
         session.close();
         return schedules;
     }
+
+    public void createSchedule(Schedule schedule) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.save(schedule);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
