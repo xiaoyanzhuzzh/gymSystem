@@ -50,7 +50,10 @@ public class CourseController {
                                      @RequestParam String coach) {
 
         Employee employee = employeeService.getEmployeeByNameAndType(coach, "coach");
-        courseService.createCourse(new Course(name, employee));
+        if(courseService.getCourseByName(name) == null){
+
+            courseService.createCourse(new Course(name, employee));
+        }
 
         return new ModelAndView("redirect:/courses/");
     }
