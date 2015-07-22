@@ -37,7 +37,7 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Schedule</th>
+                <th>Course and Coach</th>
                 <th>Private Coach</th>
                 <th>Operation</th>
             </tr>
@@ -47,12 +47,12 @@
                 <tr>
                     <td>${customer.name}</td>
                     <td>
-                        <c:forEach items="${schedules}" var="schedule">
+                        <c:forEach items="${courses}" var="course">
                             <table class="table table-condensed">
                                 <tbody>
                                     <tr>
-                                        <td>${schedule.course.name}</td>
-                                        <td>${schedule.time}</td>
+                                        <td>${course.name}</td>
+                                        <td>${course.employee.name}</td>
                                     </tr>
                                 </tbody>
                             </table>

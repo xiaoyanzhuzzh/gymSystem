@@ -1,12 +1,10 @@
 package com.tw.core.controller;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.tw.core.entity.Course;
 import com.tw.core.entity.CourseCustomerRelation;
 import com.tw.core.entity.Customer;
 import com.tw.core.entity.Schedule;
-import com.tw.core.service.CustomerService;
-import com.tw.core.service.RelationService;
-import com.tw.core.service.ScheduleService;
+import com.tw.core.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +25,10 @@ public class CustomerController {
     private RelationService relationService;
     @Autowired
     private ScheduleService scheduleService;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private CourseService courseService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllUsers(HttpServletRequest request){
@@ -38,17 +40,34 @@ public class CustomerController {
 
             List<Customer> customers = customerService.getCustomers();
             ModelAndView modelAndView = new ModelAndView("customers", "customers", customers);
-            List<Schedule> schedules = new ArrayList<Schedule>();
+            List<Course> courses = new ArrayList<Course>();
 
             for(Customer customer: customers) {
-                System.out.println(relationService.getRelationsByCustomer(customer));
-                for(CourseCustomerRelation relation: relationService.getRelationsByCustomer(customer)){
 
-                    schedules.addAll(scheduleService.getSchedulesByCourse(relation.getCourse()));
+                List<CourseCustomerRelation> relations = relationService.getRelationsByCustomer(customer);
+
+                for(int i = 0; i < relations.size(); i++) {
+
+                    courses.add(relations.get(i).getCourse());
                 }
             }
-            modelAndView.addObject("schedules", schedules);
-            System.out.println(schedules);
+            modelAndView.addObject("courses", courses);
+            return modelAndView;
+        }
+    }
+
+    @RequestMapping(value="/create", method = RequestMethod.GET)
+    public ModelAndView getCreateCustomerPage(HttpServletRequest request){
+
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            ModelAndView modelAndView = new ModelAndView("createCustomer");
+            modelAndView.addObject("employees", employeeService.getAllCoaches());
+            modelAndView.addObject("courses", courseService.getCourses());
+
             return modelAndView;
         }
     }
