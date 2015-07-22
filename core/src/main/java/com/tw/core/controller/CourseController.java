@@ -83,7 +83,7 @@ public class CourseController {
             courseService.updateCourse(new Course(id, name, employee));
         }
 
-        return new ModelAndView("redirect:/schedules/");
+        return new ModelAndView("redirect:/courses/");
     }
 
 }

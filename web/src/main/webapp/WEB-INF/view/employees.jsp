@@ -18,7 +18,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/web/users/">健身房管理系统</a>
+                    <a class="navbar-brand" href="/web/employees/">健身房管理系统</a>
                     <a class="navbar-brand" href="/web/courses/">课程信息</a>
                     <a class="navbar-brand" href="/web/schedules/">课表信息</a>
                     <a class="navbar-brand" href="/web/customers/">顾客信息</a>
@@ -31,7 +31,7 @@
             </div>
         </nav>
         <div class="container">
-            <div><a href="/web/employees/create">addUser</a></div>
+            <div><a href="/web/employees/create">addEmployee</a></div>
             <table class="table table-bordered">
                 <caption><h2>用户信息表</h2></caption>
                 <thead>

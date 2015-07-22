@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping(value = "/register")
 public class RegisterController {
 
     @Autowired
@@ -23,13 +24,13 @@ public class RegisterController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value="/register", method=RequestMethod.GET)
+    @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getRegisterPage() {
 
         return new ModelAndView("register");
     }
 
-    @RequestMapping(value="/register", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ModelAndView login(@RequestParam String nickname,
                               @RequestParam String name,
                               @RequestParam String role,
@@ -50,6 +51,6 @@ public class RegisterController {
             request.getSession().setAttribute("currentUser", name);
         }
 
-        return new ModelAndView("redirect:/users/");
+        return new ModelAndView("redirect:/employees/");
     }
 }

@@ -36,7 +36,7 @@ public class SessionController {
 
         if(url.equals("http://localhost:8080/web/login")) {
 
-            url = "/users/";
+            url = "/employees/";
             return new ModelAndView("redirect:" + url);
         } else {
 

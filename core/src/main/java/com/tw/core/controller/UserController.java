@@ -27,7 +27,6 @@ public class UserController {
             return new ModelAndView("users", "users", userService.getUsers());
         }
     }
-
 //    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 //    public ModelAndView deleteUser(@PathVariable int id){
 //
@@ -56,6 +55,6 @@ public class UserController {
         Employee employee = new Employee(employee_id, name, gender, age, email, role);
         userService.updateUser(new User(id, nickName, EncryptionHelper.md5(password), employee));
 
-        return new ModelAndView("redirect:/courses/");
+        return new ModelAndView("redirect:/users/");
     }
 }
