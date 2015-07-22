@@ -18,10 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/web/users/">健身房管理系统</a>
-                <a class="navbar-brand" href="/web/courses/">课程信息</a>
-                <a class="navbar-brand" href="/web/schedules/">课表信息</a>
-                <a class="navbar-brand" href="/web/customers/">顾客信息</a>
+                <a class="navbar-brand" href="/web/employees/">雇员管理</a>
+                <a class="navbar-brand" href="/web/users/">用户管理</a>
+                <a class="navbar-brand" href="/web/courses/">课程管理</a>
+                <a class="navbar-brand" href="/web/schedules/">课表管理</a>
+                <a class="navbar-brand" href="/web/customers/">顾客管理</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
