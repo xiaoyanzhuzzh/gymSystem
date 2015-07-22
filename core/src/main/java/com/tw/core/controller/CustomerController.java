@@ -1,13 +1,11 @@
 package com.tw.core.controller;
 
-import com.tw.core.entity.Course;
-import com.tw.core.entity.CourseCustomerRelation;
-import com.tw.core.entity.Customer;
-import com.tw.core.entity.Schedule;
+import com.tw.core.entity.*;
 import com.tw.core.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,10 +20,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private RelationService relationService;
-    @Autowired
-    private ScheduleService scheduleService;
-    @Autowired
     private EmployeeService employeeService;
     @Autowired
     private CourseService courseService;
@@ -39,20 +33,7 @@ public class CustomerController {
         } else {
 
             List<Customer> customers = customerService.getCustomers();
-            ModelAndView modelAndView = new ModelAndView("customers", "customers", customers);
-            List<Course> courses = new ArrayList<Course>();
-
-            for(Customer customer: customers) {
-
-                List<CourseCustomerRelation> relations = relationService.getRelationsByCustomer(customer);
-
-                for(int i = 0; i < relations.size(); i++) {
-
-                    courses.add(relations.get(i).getCourse());
-                }
-            }
-            modelAndView.addObject("courses", courses);
-            return modelAndView;
+            return new ModelAndView("customers", "customers", customers);
         }
     }
 
@@ -70,5 +51,14 @@ public class CustomerController {
 
             return modelAndView;
         }
+    }
+
+    @RequestMapping(value="/create", method = RequestMethod.POST)
+    public ModelAndView createCustomer(@RequestParam String name){
+
+        Customer customer = new Customer(name, null);
+        customerService.createCustomer(customer);
+
+        return new ModelAndView("redirect:/customers/");
     }
 }

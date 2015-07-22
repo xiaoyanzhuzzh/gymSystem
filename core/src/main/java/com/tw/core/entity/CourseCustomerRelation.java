@@ -10,6 +10,15 @@ public class CourseCustomerRelation {
     private Course course;
     private Customer customer;
 
+    public CourseCustomerRelation() {
+    }
+
+    public CourseCustomerRelation(Course course, Customer customer) {
+        this.course = course;
+        this.customer = customer;
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

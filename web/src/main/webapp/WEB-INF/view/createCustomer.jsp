@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/web/">健身房管理系统</a>
+                <a class="navbar-brand" href="/web/users/">健身房管理系统</a>
                 <a class="navbar-brand" href="/web/courses/">课程信息</a>
                 <a class="navbar-brand" href="/web/schedules/">课表信息</a>
                 <a class="navbar-brand" href="/web/customers/">顾客信息</a>
@@ -39,28 +39,6 @@
                 <label for="name" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="employee" class="col-sm-2 control-label">Private Employee</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="employee" name="employeeId">
-                        <option value="0"> Employee</option>
-                        <c:forEach items="${employees}" var="employee">
-                            <option value="${employee.id}">${employee.name}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="coachId" class="col-sm-2 control-label">Coach</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="coachId" name="coachId">
-                        <option value="0"> Course</option>
-                        <c:forEach items="${courses}" var="course">
-                            <option value="${course.id}">${course.name}</option>
-                        </c:forEach>
-                    </select>
                 </div>
             </div>
             <div class="form-group">

@@ -17,4 +17,9 @@ public class RelationService {
     public List<CourseCustomerRelation> getRelationsByCustomer(Customer customer) {
         return relationDao.getRelationsByCustomer(customer);
     }
+
+    public void createRelation(CourseCustomerRelation courseCustomerRelation) {
+
+        relationDao.createRelation(courseCustomerRelation);
+    }
 }

@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/web/">健身房管理系统</a>
+                <a class="navbar-brand" href="/web/users">健身房管理系统</a>
                 <a class="navbar-brand" href="/web/courses/">课程信息</a>
                 <a class="navbar-brand" href="/web/schedules/">课表信息</a>
                 <a class="navbar-brand" href="/web/customers/">顾客信息</a>
@@ -37,7 +37,6 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Course and Coach</th>
                 <th>Private Coach</th>
                 <th>Operation</th>
             </tr>
@@ -46,18 +45,6 @@
             <c:forEach items="${customers}" var="customer">
                 <tr>
                     <td>${customer.name}</td>
-                    <td>
-                        <c:forEach items="${courses}" var="course">
-                            <table class="table table-condensed">
-                                <tbody>
-                                    <tr>
-                                        <td>${course.name}</td>
-                                        <td>${course.employee.name}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </c:forEach>
-                    </td>
                     <td>${customer.employee.name}</td>
                     <td>
                             <%--<a href="/web/courses/delete/${customer.id}">delete</a>--%>

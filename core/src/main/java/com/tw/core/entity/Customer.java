@@ -10,6 +10,15 @@ public class Customer {
     private String name;
     private Employee employee;
 
+    public Customer() {
+    }
+
+    public Customer(String name, Employee employee) {
+        this.name = name;
+        this.employee = employee;
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

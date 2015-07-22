@@ -22,4 +22,14 @@ public class RelationDao {
 
         return query.list();
     }
+
+    public void createRelation(CourseCustomerRelation courseCustomerRelation) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.save(courseCustomerRelation);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

@@ -16,4 +16,14 @@ public class CustomerDao {
         session.close();
         return customers;
     }
+
+    public void createCustomer(Customer customer) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.save(customer);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

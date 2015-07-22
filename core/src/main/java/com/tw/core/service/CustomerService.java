@@ -17,4 +17,9 @@ public class CustomerService {
 
         return customerDao.getCustomers();
     }
+
+    public void createCustomer(Customer customer) {
+
+        customerDao.createCustomer(customer);
+    }
 }

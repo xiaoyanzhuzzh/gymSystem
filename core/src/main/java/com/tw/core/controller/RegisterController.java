@@ -50,6 +50,6 @@ public class RegisterController {
             request.getSession().setAttribute("currentUser", name);
         }
 
-        return new ModelAndView("redirect:/employees");
+        return new ModelAndView("redirect:/users/");
     }
 }

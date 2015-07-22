@@ -30,7 +30,7 @@ CREATE TABLE users (
 CREATE TABLE customers (
   id INT (11) NOT NULL auto_increment,
   name VARCHAR (30) NOT NULL ,
-  employee_id INT NOT NULL ,
+  employee_id INT DEFAULT NULL ,
   PRIMARY KEY (id) ,
   FOREIGN KEY (employee_id) REFERENCES employees(id)
 );
