@@ -1,6 +1,7 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Customer;
+import com.tw.core.entity.User;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,25 @@ public class CustomerDao {
         session.beginTransaction();
 
         session.save(customer);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public Customer getCustomerById(int id) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Customer customer = (Customer) session.get(Customer.class, id);
+        session.close();
+        return customer;
+    }
+
+    public void updateCustomer(Customer customer) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.update(customer);
         session.getTransaction().commit();
         session.close();
     }

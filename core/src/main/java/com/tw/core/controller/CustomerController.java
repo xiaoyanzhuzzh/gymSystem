@@ -3,10 +3,7 @@ package com.tw.core.controller;
 import com.tw.core.entity.*;
 import com.tw.core.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,5 +57,20 @@ public class CustomerController {
         customerService.createCustomer(customer);
 
         return new ModelAndView("redirect:/customers/");
+    }
+
+    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
+    public ModelAndView getUpdateCustomerPage(@PathVariable int id){
+
+        return new ModelAndView("updateCustomer", "customer", customerService.getCustomerById(id));
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public ModelAndView getUpdateCustomerPage(@RequestParam int id,
+                                          @RequestParam String name){
+
+
+        customerService.updateCustomer(new Customer(id, name, null));
+        return new ModelAndView("redirect:/customers");
     }
 }
