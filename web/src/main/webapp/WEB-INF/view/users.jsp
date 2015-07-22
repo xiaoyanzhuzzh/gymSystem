@@ -55,7 +55,7 @@
                     <td>${user.employee.age}</td>
                     <td>${user.employee.email}</td>
                     <td>
-                        <%--<a href="/web/users/delete/${user.id}">delete</a>--%>
+                        <a href="/web/users/delete/${user.id}">delete</a>
                         <a href="/web/users/update/${user.id}">update</a>
                     </td>
                 </tr>

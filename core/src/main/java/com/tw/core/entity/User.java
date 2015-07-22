@@ -28,7 +28,7 @@ public class User {
         this.employee = employee;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     public Employee getEmployee() {
         return employee;
     }

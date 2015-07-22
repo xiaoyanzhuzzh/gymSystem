@@ -39,6 +39,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Gender</th>
+                        <th>Role</th>
                         <th>Age</th>
                         <th>Email</th>
                         <th>Operation</th>
@@ -53,7 +54,7 @@
                             <td>${employee.age}</td>
                             <td>${employee.email}</td>
                             <td>
-                                <a href="/web/employees/delete/${employee.id}">delete</a>
+                                <%--<a href="/web/employees/delete/${employee.id}">delete</a>--%>
                                 <a href="/web/employees/update/${employee.id}">update</a>
                             </td>
                         </tr>

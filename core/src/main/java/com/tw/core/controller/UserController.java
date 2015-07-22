@@ -27,13 +27,13 @@ public class UserController {
             return new ModelAndView("users", "users", userService.getUsers());
         }
     }
-//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-//    public ModelAndView deleteUser(@PathVariable int id){
-//
-//        userService.deleteUserById(id);
-//
-//        return new ModelAndView("redirect:/users/");
-//    }
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteUser(@PathVariable int id){
+
+        userService.deleteUserById(id);
+
+        return new ModelAndView("redirect:/users/");
+    }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdateUserAge(@PathVariable int id){
