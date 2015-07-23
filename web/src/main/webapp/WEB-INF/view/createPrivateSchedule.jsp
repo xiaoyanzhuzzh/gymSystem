@@ -37,7 +37,7 @@
     <div class="container">
         <form class="form-horizontal" action="/web/schedules/createPrivate" method="post">
             <div class="form-group">
-                <label for="customerId" class="col-sm-2 control-label">Course</label>
+                <label for="customerId" class="col-sm-2 control-label">Customer</label>
                 <div class="col-sm-4">
                     <select class="form-control" name="customerId" id="customerId">
                         <option value="Customer"> Customer</option>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="coachId" class="col-sm-2 control-label">Course</label>
+                <label for="coachId" class="col-sm-2 control-label">Coach</label>
                 <div class="col-sm-4">
                     <select class="form-control" name="coachId" id="coachId">
                         <option value="Coach"> Coach</option>
@@ -67,6 +67,12 @@
                             <option value="${course.id}">${course.name}</option>
                         </c:forEach>
                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="time" class="col-sm-2 control-label">Time</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="time" name="time" placeholder="Time">
                 </div>
             </div>
             <div class="form-group">

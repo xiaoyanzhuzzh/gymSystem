@@ -1,6 +1,7 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Course;
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
@@ -67,5 +68,15 @@ public class CourseDao {
         session.update(course);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public List<Course> getCoursesByEmployee(Employee employee) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from Course where employee=:employee";
+        Query query = session.createQuery(hql);
+
+        query.setParameter("employee", employee);
+        return query.list();
     }
 }

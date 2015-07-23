@@ -38,4 +38,9 @@ public class CourseService {
 
         courseDao.updateCourse(course);
     }
+
+    public List<Course> getCoursesByEmployee(Employee employee) {
+
+        return courseDao.getCoursesByEmployee(employee);
+    }
 }

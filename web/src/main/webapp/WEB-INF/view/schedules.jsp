@@ -33,6 +33,7 @@
         </nav>
         <div class="container">
             <div><a href="/web/schedules/create">addSchedule</a></div>
+            <div><a href="/web/schedules/createPrivate">addPrivateSchedule</a></div>
             <table class="table table-bordered">
                 <caption><h2>课程表</h2></caption>
                 <thead>
