@@ -45,16 +45,46 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Role</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="role" name="role" value="${employee.role}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" id="password" name="password" value="${user.password}">
-                    </div>
+                    <label class="col-sm-2 control-label">Role</label>
+                    <c:if test="${employee.role == 'coach'}">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="coach" checked> coach
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="hr"> hr
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="ops"> ops
+                            </label>
+                        </div>
+                    </c:if>
+                    <c:if test="${employee.role == 'hr'}">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="coach"> coach
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="hr" checked> hr
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="ops"> ops
+                            </label>
+                        </div>
+                    </c:if>
+                    <c:if test="${employee.role == 'ops'}">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="coach"> coach
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="hr"> hr
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role"  value="ops"> ops
+                            </label>
+                        </div>
+                    </c:if>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Gender</label>

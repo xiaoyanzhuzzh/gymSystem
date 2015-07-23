@@ -1,8 +1,6 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Employee;
-import com.tw.core.entity.User;
-import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -87,8 +85,14 @@ public class EmployeeDao {
 
         return result;
     }
-//
-//    public static void main(String[] args) {
-//        System.out.println(new EmployeeDao().getAllCoaches().size());
-//    }
+
+    public void updateEmployee(Employee employee) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        session.update(employee);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

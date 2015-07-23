@@ -44,4 +44,9 @@ public class EmployeeService {
 
         return employeeDao.getEmployeeByNameAndRole(name, role);
     }
+
+    public void updateEmployee(Employee employee) {
+
+        employeeDao.updateEmployee(employee);
+    }
 }
