@@ -1,5 +1,6 @@
 package com.tw.core.service;
 
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,10 @@ public class UserService {
     public Boolean verifyUserInfo(String name, String password) {
 
         return userDao.verifyUserInfo(name, password);
+    }
+
+    public User getUserByEmployee(Employee employee) {
+
+        return userDao.getUserByEmployee(employee);
     }
 }

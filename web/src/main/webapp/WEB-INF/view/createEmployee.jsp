@@ -41,12 +41,6 @@
         <div class="container">
             <form class="form-horizontal" action="/web/employees/create" method="post">
                 <div class="form-group">
-                    <label for="nickname" class="col-sm-2 control-label">Nickname:</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name:</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -64,12 +58,6 @@
                         <label class="radio-inline">
                             <input type="radio" name="role" value="ops"> ops
                         </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-2 control-label">Password:</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">

@@ -1,5 +1,6 @@
 package com.tw.core.dao;
 
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.util.HibernateUtil;
@@ -100,9 +101,18 @@ public class UserDao {
         return result;
     }
 
-//    public static void main(String[] args) {
-//        User user = new User("zhaolele", EncryptionHelper.md5("111"), );
-//        new UserDao().updateUser(user);
-//        System.out.println(new UserDao().getUsers().get(0).getId());
-//    }
+    public User getUserByEmployee(Employee employee) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from User where employee=:employee";
+        Query query = session.createQuery(hql);
+
+        query.setParameter("employee", employee);
+
+        List<User> users = query.list();
+
+        session.close();
+
+        return users.get(0);
+    }
 }
