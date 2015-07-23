@@ -49,7 +49,7 @@ public class UserService {
         return userDao.verifyUserInfo(name, password);
     }
 
-    public User getUserByEmployee(Employee employee) {
+    public Boolean getUserByEmployee(Employee employee) {
 
         return userDao.getUserByEmployee(employee);
     }

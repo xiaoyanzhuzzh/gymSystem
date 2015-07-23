@@ -1,5 +1,6 @@
 package com.tw.core.dao;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
@@ -101,7 +102,8 @@ public class UserDao {
         return result;
     }
 
-    public User getUserByEmployee(Employee employee) {
+    public Boolean getUserByEmployee(Employee employee) {
+        Boolean result = false;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         String hql = "from User where employee=:employee";
@@ -110,9 +112,11 @@ public class UserDao {
         query.setParameter("employee", employee);
 
         List<User> users = query.list();
-
+        if(users.size() == 1) {
+            result = true;
+        }
         session.close();
 
-        return users.get(0);
+        return result;
     }
 }

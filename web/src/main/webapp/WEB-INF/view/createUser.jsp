@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -36,38 +37,26 @@
         <div class="container">
             <form class="form-horizontal" action="/web/users/create" method="post">
                 <div class="form-group">
+                    <label for="employeeId" class="col-sm-2 control-label">Employee</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="employeeId" id="employeeId">
+                            <option value="Employee"> Employee</option>
+                            <c:forEach items="${employees}" var="employee">
+                                <option value="${employee.id}">${employee.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Password</label>
+                    <label for="password" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-4">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Gender</label>
-                    <div class="col-sm-4">
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="female"> female
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="male"> male
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="age" class="col-sm-2 control-label">Age</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="age" name="age" placeholder="Age">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-4">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">

@@ -32,6 +32,7 @@
         </div>
     </nav>
     <div class="container">
+        <div><a href="/web/users/create">addUser</a></div>
         <table class="table table-bordered">
             <caption><h2>用户信息表</h2></caption>
             <thead>

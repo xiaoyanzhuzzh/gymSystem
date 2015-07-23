@@ -3,18 +3,23 @@ package com.tw.core.controller;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
+import com.tw.core.service.EmployeeService;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmployeeService employeeService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getAllUsers(HttpServletRequest request){
@@ -27,6 +32,42 @@ public class UserController {
             return new ModelAndView("users", "users", userService.getUsers());
         }
     }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public ModelAndView getCreateUserPage(HttpServletRequest request) {
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            List<Employee> currentEmployees = new ArrayList<Employee>();
+
+            List<Employee> employees = employeeService.getEmployees();
+
+            System.out.println("");
+            for(int i = 0; i < employees.size(); i++) {
+
+                if(!userService.getUserByEmployee(employees.get(i))) {
+
+                    currentEmployees.add(employees.get(i));
+                }
+            }
+            return new ModelAndView("createUser", "employees", currentEmployees);
+        }
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ModelAndView createEmployee(@RequestParam String name,
+                                       @RequestParam int employeeId,
+                                       @RequestParam String password){
+
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        User user = new User(name, password, employee);
+        userService.createUser(user);
+
+        return new ModelAndView("redirect:/users/");
+    }
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteUser(@PathVariable int id){
 
