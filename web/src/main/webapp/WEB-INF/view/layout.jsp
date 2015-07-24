@@ -23,7 +23,7 @@
             <ul>
                 <li><a class="link" href="/web/employees/">员工管理</a></li>
                 <li><a class="link" href="/web/users/">用户管理</a></li>
-                <li><a class="link" href="/web/courses">课程管理</a></li>
+                <li><a class="link" href="/web/courses/">课程管理</a></li>
                 <li><a class="link" href="/web/schedules/">课表管理</a></li>
                 <li><a class="link" href="/web/customers/">顾客管理</a></li>
             </ul>

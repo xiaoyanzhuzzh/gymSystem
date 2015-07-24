@@ -35,18 +35,37 @@
                     <td>${user.employee.age}</td>
                     <td>${user.employee.email}</td>
                     <td>
-                        <a class="btn btn-warning btn-sm" href="/web/users/delete/${user.id}">delete</a>
-                        <a class="btn btn-danger btn-sm" href="/web/users/update/${user.id}">update</a>
+                        <a href="#myModal" data-toggle="modal" data-id="${user.id}" class="btn btn-warning btn-sm deleteUser">delete</a>
+                        <a data-id="${user.id}" class="btn btn-danger btn-sm updateUser" href="/web/users/update/${user.id}">update</a>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>确认删除用户吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="confirmDelete" type="button" class="btn btn-warning">Confirm Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <spring:url value="/lib/js/bootstrap.min.js" var="bootstrapJs" />
 <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jqueryJs" />
+<spring:url value="/lib/js/self/users.js" var="userJs" />
 <script src="${jqueryJs}"></script>
 <script src="${bootstrapJs}"></script>
+<script src="${userJs}"></script>
 </body>
 </html>
