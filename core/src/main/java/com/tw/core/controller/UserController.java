@@ -61,9 +61,12 @@ public class UserController {
                                        @RequestParam int employeeId,
                                        @RequestParam String password){
 
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        User user = new User(name, password, employee);
-        userService.createUser(user);
+        if(!userService.getUserByName(name)) {
+            
+            Employee employee = employeeService.getEmployeeById(employeeId);
+            User user = new User(name, password, employee);
+            userService.createUser(user);
+        }
 
         return new ModelAndView("redirect:/users/");
     }
@@ -74,7 +77,6 @@ public class UserController {
         System.out.println(id);
         userService.deleteUserById(id);
         return "yes";
-
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
