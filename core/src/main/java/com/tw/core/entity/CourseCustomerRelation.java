@@ -26,13 +26,13 @@ public class CourseCustomerRelation {
         return id;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "course_id")
     public Course getCourse() {
         return course;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "customer_id")
     public Customer getCustomer() {
         return customer;

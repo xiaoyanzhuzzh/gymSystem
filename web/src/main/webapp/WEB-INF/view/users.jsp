@@ -36,7 +36,7 @@
                     <td>${user.employee.email}</td>
                     <td>
                         <a href="#myModal" data-toggle="modal" data-id="${user.id}" class="btn btn-warning btn-sm deleteUser">delete</a>
-                        <a data-id="${user.id}" class="btn btn-danger btn-sm updateUser" href="/web/users/update/${user.id}">update</a>
+                        <a data-id="${user.id}" class="btn btn-danger btn-sm updateUser">update</a>
                     </td>
                 </tr>
             </c:forEach>

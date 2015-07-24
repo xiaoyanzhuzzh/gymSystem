@@ -18,6 +18,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @Autowired
     private EmployeeService employeeService;
 
@@ -62,7 +63,7 @@ public class UserController {
                                        @RequestParam String password){
 
         if(!userService.getUserByName(name)) {
-            
+
             Employee employee = employeeService.getEmployeeById(employeeId);
             User user = new User(name, password, employee);
             userService.createUser(user);

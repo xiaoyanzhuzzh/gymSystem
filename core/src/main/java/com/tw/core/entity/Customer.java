@@ -37,7 +37,7 @@ public class Customer {
         return name;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "employee_id")
     public Employee getEmployee() {
         return employee;

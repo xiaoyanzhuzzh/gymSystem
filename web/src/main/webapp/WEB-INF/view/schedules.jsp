@@ -51,18 +51,38 @@
                         <td>${schedule.course.employee.name}</td>
                         <td>${schedule.time}</td>
                         <td>
-                            <%--<a href="/web/schedules/delete/${schedule.id}">delete</a>--%>
+                            <a href="#myModal" data-toggle="modal" data-id="${schedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
                             <a href="/web/schedules/update/${schedule.id}">update</a>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>确认删除这节课吗？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="confirmDelete" type="button" class="btn btn-warning">Confirm Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <spring:url value="/lib/js/bootstrap.min.js" var="bootstrapJs" />
     <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jqueryJs" />
+    <spring:url value="/lib/js/self/schedules.js" var="scheduleJs" />
     <script src="${jqueryJs}"></script>
     <script src="${bootstrapJs}"></script>
+    <script src="${scheduleJs}"></script>
 </body>
 </html>
