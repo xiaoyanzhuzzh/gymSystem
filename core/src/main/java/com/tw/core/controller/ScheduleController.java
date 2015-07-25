@@ -109,7 +109,7 @@ public class ScheduleController {
         return new ModelAndView("redirect:/schedules/");
     }
 
-    @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ModelAndView getUpdateSchedulePage(@PathVariable int id,
                                               HttpServletRequest request) {
 
@@ -141,10 +141,7 @@ public class ScheduleController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteUser(@PathVariable int id){
 
-        System.out.println(id);
         scheduleService.deleteScheduleById(id);
-
-
         return "yes";
     }
 }

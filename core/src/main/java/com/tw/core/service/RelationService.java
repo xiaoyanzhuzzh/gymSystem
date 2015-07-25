@@ -22,4 +22,9 @@ public class RelationService {
 
         relationDao.createRelation(courseCustomerRelation);
     }
+
+    public List<CourseCustomerRelation> getRelations() {
+
+        return relationDao.getRelations();
+    }
 }

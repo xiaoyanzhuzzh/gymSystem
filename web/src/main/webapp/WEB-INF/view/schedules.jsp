@@ -41,6 +41,7 @@
                     <th>Name</th>
                     <th>Coach</th>
                     <th>Time</th>
+                    <th>Type</th>
                     <th>Operation</th>
                 </tr>
                 </thead>
@@ -50,9 +51,10 @@
                         <td>${schedule.course.name}</td>
                         <td>${schedule.course.employee.name}</td>
                         <td>${schedule.time}</td>
+                        <td></td>
                         <td>
                             <a href="#myModal" data-toggle="modal" data-id="${schedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
-                            <a href="/web/schedules/update/${schedule.id}">update</a>
+                            <a href="/web/schedules/${schedule.id}">update</a>
                         </td>
                     </tr>
                 </c:forEach>

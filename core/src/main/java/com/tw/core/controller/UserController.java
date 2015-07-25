@@ -65,7 +65,7 @@ public class UserController {
         if(!userService.getUserByName(name)) {
 
             Employee employee = employeeService.getEmployeeById(employeeId);
-            User user = new User(name, password, employee);
+            User user = new User(name, EncryptionHelper.md5(password), employee);
             userService.createUser(user);
         }
 

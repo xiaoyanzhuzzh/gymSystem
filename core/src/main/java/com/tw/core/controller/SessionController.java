@@ -1,5 +1,6 @@
 package com.tw.core.controller;
 
+import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,9 @@ public class SessionController {
                               @RequestParam String password,
                               HttpServletRequest request){
 
-        if(userService.verifyUserInfo(name, password)) {
+        if(userService.verifyUserInfo(name, EncryptionHelper.md5(password))) {
 
+            System.out.println(password);
             request.getSession().setAttribute("currentUser", name);
         }
 

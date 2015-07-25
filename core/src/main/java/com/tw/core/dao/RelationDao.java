@@ -32,4 +32,13 @@ public class RelationDao {
         session.getTransaction().commit();
         session.close();
     }
+
+    public List<CourseCustomerRelation> getRelations() {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<CourseCustomerRelation> relations = session.createQuery("from CourseCustomerRelation").list();
+
+        session.close();
+        return relations;
+    }
 }

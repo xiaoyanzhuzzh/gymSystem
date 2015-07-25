@@ -1,16 +1,16 @@
 $(function() {
 
-    var scheduleId = '';
+    var scheduleIdDelete = '';
     var $this = '';
     $('.deleteSchedule').on('click', function() {
 
         $this = $(this);
-        scheduleId = $this.data('id');
+        scheduleIdDelete = $this.data('id');
     });
 
     $('.confirmDelete').on('click', function() {
         $.ajax({
-            url: '/web/schedules/' + scheduleId,
+            url: '/web/schedules/' + scheduleIdDelete,
             type: 'DELETE',
             success: function(data){
 
@@ -19,8 +19,4 @@ $(function() {
             }
         })
     });
-
-    $('.updateUser').on('click', function() {
-        $this = $(this);
-    })
 });

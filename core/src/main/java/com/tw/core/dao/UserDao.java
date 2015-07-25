@@ -1,11 +1,8 @@
 package com.tw.core.dao;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import com.tw.core.entity.Admin;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
-import com.tw.core.service.UserService;
 import com.tw.core.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -93,7 +90,7 @@ public class UserDao {
         Query query = session.createQuery(hql);
 
         query.setString(0, name);
-        query.setString(1, EncryptionHelper.md5(password));
+        query.setString(1, password);
 
         List<User> users = query.list();
         if(users.size() == 1) {
@@ -125,7 +122,7 @@ public class UserDao {
     public static void main(String[] args) {
 
         UserDao userDao = new UserDao();
-        User user = userDao.getUserById(17);
+        User user = userDao.getUserById(27);
         user.setPassword(EncryptionHelper.md5("111"));
         userDao.updateUser(user);
     }
