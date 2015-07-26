@@ -122,7 +122,7 @@ public class UserDao {
     public static void main(String[] args) {
 
         UserDao userDao = new UserDao();
-        User user = userDao.getUserById(27);
+        User user = userDao.getUserById(1);
         user.setPassword(EncryptionHelper.md5("111"));
         userDao.updateUser(user);
     }

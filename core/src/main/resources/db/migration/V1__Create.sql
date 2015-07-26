@@ -61,3 +61,7 @@ CREATE TABLE schedules (
   PRIMARY KEY (id) ,
   FOREIGN KEY (course_id) REFERENCES courses(id)
 );
+
+INSERT INTO employees VALUES (NULL, "zhujiang", "male", 21, "12@qq.com", "coach");
+INSERT INTO users VALUES (NULL, "111", "111", 1);
+

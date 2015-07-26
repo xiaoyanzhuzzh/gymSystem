@@ -38,8 +38,7 @@ public class ScheduleController {
 
             List<Course> publicCourses = new ArrayList<Course>();
             List<Schedule> publicSchedules = new ArrayList<Schedule>();
-
-            //公共课
+            
             List<Course> courses = courseService.getCourses();
             for (Course course : courses) {
                 if (relationService.getRelationsByCourse(course).size() == 0) {
@@ -135,6 +134,7 @@ public class ScheduleController {
 
             Course currentCourse = courseService.getCourseById(courseId);
             Course newCourse  = new Course(currentCourse.getName(), employee);
+            courseService.createCourse(newCourse);
             relationService.createRelation(new CourseCustomerRelation(newCourse, customer));
 
             scheduleService.createSchedule(new Schedule(time, newCourse));
