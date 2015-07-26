@@ -34,6 +34,7 @@ public class UserController {
         }
     }
 
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getCreateUserPage(HttpServletRequest request) {
         if(request.getSession().getAttribute("currentUser") == null){
@@ -75,15 +76,22 @@ public class UserController {
     @RequestMapping(value = "/  {id}", method = RequestMethod.DELETE)
     public String deleteUser(@PathVariable int id){
 
-        System.out.println(id);
         userService.deleteUserById(id);
         return "yes";
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    public ModelAndView getUpdateUserAge(@PathVariable int id){
-        User user = userService.getUserById(id);
-        return new ModelAndView("updateUser", "user", user);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView getUserById(HttpServletRequest request,
+                                    @PathVariable int id){
+
+        if(request.getSession().getAttribute("currentUser") == null){
+
+            return new ModelAndView("redirect:/login");
+        } else {
+
+            User user = userService.getUserById(id);
+            return new ModelAndView("updateUser", "user", user);
+        }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

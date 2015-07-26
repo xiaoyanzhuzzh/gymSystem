@@ -19,9 +19,4 @@ $(function() {
             }
         })
     });
-
-    $('.updateUser').on('click', function() {
-        $this = $(this);
-
-    })
 });
