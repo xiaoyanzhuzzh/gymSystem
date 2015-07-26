@@ -55,16 +55,11 @@
             <label class="labelContent" for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Email">
         </div>
-        <div class="formContent">
-            <button type="submit">Register</button>
+        <div id="registerButton" class="formContent">
+            <button  type="submit">Register</button>
         </div>
     </form>
-
-    <spring:url value="/lib/js/bootstrap.min.js" var="bootstrapJs" />
     <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jqueryJs" />
-    <%--<spring:url value="/lib/js/self/register.js" var="registerJs" />--%>
     <script src="${jqueryJs}"></script>
-    <script src="${bootstrapJs}"></script>
-    <%--<script src="${registerJs}"></script>--%>
 </body>
 </html>

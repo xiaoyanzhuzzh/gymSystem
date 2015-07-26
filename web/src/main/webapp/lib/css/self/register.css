@@ -1,11 +1,12 @@
 body {
-    font: normal 1.0em arial, sans-serif;
     background: #F8F7EE url(../../image/pattern.png);
-    color: #7A7A68;;
+    color: #7A7A68;
+    margin: 150px;
 }
 #registerTitle {
+    font: normal 1.0em arial, sans-serif;
     margin: 0 100px;
-    border: solid 0 teal;
+    border: solid 0 #000;
     border-right-width: 2px;
     display: inline-block;
     vertical-align: top;
@@ -22,6 +23,13 @@ div.formContent {
     padding: 10px 0 10px 0;
 }
 label.labelContent {
+    color: #269abc;
     width: 80px;
     display: inline-block;
+}
+#registerButton {
+    text-align: center;
+}
+#registerButton button {
+    color: red;
 }
