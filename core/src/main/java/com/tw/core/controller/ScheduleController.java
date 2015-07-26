@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,40 @@ public class ScheduleController {
             return new ModelAndView("redirect:/login");
         } else {
 
-            return new ModelAndView("schedules", "schedules", scheduleService.getSchedules());
+            ModelAndView modelAndView = new ModelAndView("schedules");
+            List<Schedule> schedules = scheduleService.getSchedules();
+
+            List<Course> publicCourses = new ArrayList<Course>();
+            List<Schedule> publicSchedules = new ArrayList<Schedule>();
+
+            //公共课
+            List<Course> courses = courseService.getCourses();
+            for (Course course : courses) {
+                if (relationService.getRelationsByCourse(course).size() == 0) {
+
+                    publicCourses.add(course);
+                }
+            }
+
+            for(Course course: publicCourses) {
+                publicSchedules.addAll(scheduleService.getSchedulesByCourse(course));
+            }
+
+            for(Schedule schedule: publicSchedules) {
+                schedules.remove(schedule);
+            }
+
+            for(int i = 0; i < publicSchedules.size(); i ++) {
+                for(int j = 0; j < schedules.size(); j++) {
+                    if(publicSchedules.get(i).getId() == schedules.get(j).getId()) {
+                        schedules.remove(j);
+                    }
+                }
+            }
+
+            modelAndView.addObject("publicSchedules", publicSchedules);
+            modelAndView.addObject("privateSchedules", schedules);
+            return modelAndView;
         }
     }
 

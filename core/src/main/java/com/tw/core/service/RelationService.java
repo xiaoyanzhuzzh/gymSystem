@@ -1,6 +1,7 @@
 package com.tw.core.service;
 
 import com.tw.core.dao.RelationDao;
+import com.tw.core.entity.Course;
 import com.tw.core.entity.CourseCustomerRelation;
 import com.tw.core.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class RelationService {
     public List<CourseCustomerRelation> getRelations() {
 
         return relationDao.getRelations();
+    }
+
+    public List<CourseCustomerRelation> getRelationsByCourse(Course course) {
+
+        return relationDao.getRelationsByCourse(course);
     }
 }

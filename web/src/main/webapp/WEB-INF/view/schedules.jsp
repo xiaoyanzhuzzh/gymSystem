@@ -35,26 +35,48 @@
             <div><a href="/web/schedules/create">addSchedule</a></div>
             <div><a href="/web/schedules/createPrivate">addPrivateSchedule</a></div>
             <table class="table table-bordered">
-                <caption><h2>课程表</h2></caption>
+                <caption><h2>公开课程表</h2></caption>
                 <thead>
                 <tr>
                     <th>Name</th>
                     <th>Coach</th>
                     <th>Time</th>
-                    <th>Type</th>
                     <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${schedules}" var="schedule">
+                <c:forEach items="${publicSchedules}" var="publicSchedule">
                     <tr>
-                        <td>${schedule.course.name}</td>
-                        <td>${schedule.course.employee.name}</td>
-                        <td>${schedule.time}</td>
-                        <td></td>
+                        <td>${publicSchedule.course.name}</td>
+                        <td>${publicSchedule.course.employee.name}</td>
+                        <td>${publicSchedule.time}</td>
                         <td>
-                            <a href="#myModal" data-toggle="modal" data-id="${schedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
-                            <a href="/web/schedules/${schedule.id}">update</a>
+                            <a href="#myModal" data-toggle="modal" data-id="${publicSchedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
+                            <a href="/web/schedules/${publicSchedule.id}">update</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <table class="table table-bordered">
+                <caption><h2>私人课程表</h2></caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Coach</th>
+                    <th>Time</th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${privateSchedules}" var="privateSchedule">
+                    <tr>
+                        <td>${privateSchedule.course.name}</td>
+                        <td>${privateSchedule.course.employee.name}</td>
+                        <td>${privateSchedule.time}</td>
+                        <td>
+                            <a href="#myModal" data-toggle="modal" data-id="${privateSchedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
+                            <a href="/web/schedules/${privateSchedule.id}">update</a>
                         </td>
                     </tr>
                 </c:forEach>

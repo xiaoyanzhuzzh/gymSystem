@@ -26,7 +26,7 @@ $(document).ready(function() {
             dataType : 'json',
             data: JSON.stringify(data),
             success: function(data) {
-                alert('hahah')
+                alert('hahah');
             }
         })
     });

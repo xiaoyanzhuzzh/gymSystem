@@ -1,5 +1,6 @@
 package com.tw.core.dao;
 
+import com.tw.core.entity.Course;
 import com.tw.core.entity.CourseCustomerRelation;
 import com.tw.core.entity.Customer;
 import com.tw.core.util.HibernateUtil;
@@ -40,5 +41,17 @@ public class RelationDao {
 
         session.close();
         return relations;
+    }
+
+    public List<CourseCustomerRelation> getRelationsByCourse(Course course) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from CourseCustomerRelation where course=:course";
+        Query query = session.createQuery(hql);
+
+        query.setParameter("course", course);
+
+        return query.list();
+
     }
 }
