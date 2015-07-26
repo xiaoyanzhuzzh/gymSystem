@@ -24,11 +24,11 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    <form class="form-horizontal" action="" method="post">
+                    <form id="register" class="form-horizontal" action="" method="post">
                         <div class="form-group">
-                            <label for="nickname" class="col-sm-2 control-label">Nickname:</label>
+                            <label for="nickName" class="col-sm-2 control-label">Nickname:</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname">
+                                <input type="text" class="form-control" id="nickName" name="nickName" placeholder="NickName">
                             </div>
                         </div>
                         <div class="form-group">
@@ -92,7 +92,9 @@
     </div>
     <spring:url value="/lib/js/bootstrap.min.js" var="bootstrapJs" />
     <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jqueryJs" />
+    <%--<spring:url value="/lib/js/self/register.js" var="registerJs" />--%>
     <script src="${jqueryJs}"></script>
     <script src="${bootstrapJs}"></script>
+    <%--<script src="${registerJs}"></script>--%>
 </body>
 </html>

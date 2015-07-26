@@ -1,5 +1,6 @@
 package com.tw.core.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
@@ -30,8 +31,34 @@ public class RegisterController {
         return new ModelAndView("register");
     }
 
+//    @RequestMapping(method=RequestMethod.POST)
+//    public String registerUser(@RequestParam String nickName,
+//                                @RequestParam String name,
+//                                @RequestParam String role,
+//                                @RequestParam String password,
+//                                @RequestParam String gender,
+//                                @RequestParam int age,
+//                                @RequestParam String email,
+//                                HttpServletRequest request) {
+//
+//
+//        if (!userService.getUserByName(nickName)) {
+//            Employee employee = new Employee(name, gender, age, email, role);
+//            employeeService.createEmployee(employee);
+//
+//            User user = new User(nickName, EncryptionHelper.md5(password), employee);
+//            userService.createUser(user);
+//            request.getSession().setAttribute("currentUser", name);
+//            return "Register Success";
+//        } else {
+//
+//            return "UserName Existed";
+//        }
+//
+//    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView login(@RequestParam String nickname,
+    public ModelAndView login(@RequestParam String nickName,
                               @RequestParam String name,
                               @RequestParam String role,
                               @RequestParam String password,
@@ -44,9 +71,9 @@ public class RegisterController {
         Employee employee = new Employee(name, gender, age, email, role);
         employeeService.createEmployee(employee);
 
-        if (!userService.getUserByName(nickname)) {
+        if (!userService.getUserByName(nickName)) {
 
-            User user = new User(nickname, EncryptionHelper.md5(password), employee);
+            User user = new User(nickName, EncryptionHelper.md5(password), employee);
             userService.createUser(user);
             request.getSession().setAttribute("currentUser", name);
         }
