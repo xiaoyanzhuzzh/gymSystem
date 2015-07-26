@@ -6,6 +6,7 @@ import com.tw.core.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,5 +47,28 @@ public class ScheduleService {
     public List<Schedule> getSchedulesByCourse(Course course) {
 
         return scheduleDao.getScheduleByCourse(course);
+    }
+
+    public List<Schedule> getPublicSchedules(List<Course> publicCourses) {
+
+        List<Schedule> publicSchedules = new ArrayList<Schedule>();
+        for(Course course: publicCourses) {
+            publicSchedules.addAll(this.getSchedulesByCourse(course));
+        }
+
+        return publicSchedules;
+    }
+
+    public List<Schedule> getPrivateSchedules(List<Schedule> publicSchedules, List<Schedule> schedules) {
+
+        for(int i = 0; i < publicSchedules.size(); i ++) {
+            for(int j = 0; j < schedules.size(); j++) {
+                if(publicSchedules.get(i).getId() == schedules.get(j).getId()) {
+                    schedules.remove(j);
+                }
+            }
+        }
+
+        return schedules;
     }
 }
