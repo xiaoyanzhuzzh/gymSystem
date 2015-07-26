@@ -35,7 +35,7 @@
         </div>
     </nav>
     <div class="container">
-        <form class="form-horizontal" action="/web/users/update" method="post">
+        <form id="updateUserForm" class="form-horizontal">
             <input type="hidden" value="${user.id}" name="id">
             <input type="hidden" value="${user.employee.id}" name="employee_id">
             <div class="form-group">
@@ -107,7 +107,9 @@
 </div>
 <spring:url value="/lib/js/bootstrap.min.js" var="bootstrapJs" />
 <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jqueryJs" />
+<spring:url value="/lib/js/self/users.js" var="usersJs" />
 <script src="${jqueryJs}"></script>
 <script src="${bootstrapJs}"></script>
+<script src="${usersJs}"></script>
 </body>
 </html>
