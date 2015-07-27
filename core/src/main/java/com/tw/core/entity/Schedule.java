@@ -44,7 +44,7 @@ public class Schedule {
         return time;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     public Course getCourse() {
         return course;

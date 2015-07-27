@@ -79,4 +79,16 @@ public class CourseDao {
         query.setParameter("employee", employee);
         return query.list();
     }
+
+    public void deleteCourseById(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        Course course = (Course) session.load(Course.class, id);
+        session.delete(course);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }

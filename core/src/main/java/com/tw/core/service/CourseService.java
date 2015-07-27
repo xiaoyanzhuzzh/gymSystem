@@ -59,4 +59,9 @@ public class CourseService {
 
         return publicCourses;
     }
+
+    public void deleteCourseById(int id) {
+
+        courseDao.deleteCourseById(id);
+    }
 }

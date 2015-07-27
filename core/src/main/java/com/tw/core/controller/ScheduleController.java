@@ -23,8 +23,6 @@ public class ScheduleController {
     private EmployeeService employeeService;
     @Autowired
     private CustomerService customerService;
-    @Autowired
-    private RelationDao relationService;
 
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getSchedules(HttpServletRequest request) {
@@ -154,12 +152,6 @@ public class ScheduleController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteSchedule(@PathVariable int id){
-
-        Schedule deleteSchedule = scheduleService.getScheduleById(id);
-        Course deleteCourse = deleteSchedule.getCourse();
-
-        Customer deleteCustomer = customerService.getCustomerByEmployee(deleteCourse.getEmployee());
-//        relationService.deleteRelationByCourseAndCustomer(deleteCourse, deleteCustomer);
 
         scheduleService.deleteScheduleById(id);
 
