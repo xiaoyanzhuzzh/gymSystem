@@ -57,9 +57,11 @@ CREATE TABLE course_customer_relations (
 CREATE TABLE schedules (
   id INT (11) NOT NULL auto_increment,
   course_id INT (11) NOT NULL ,
+  customer_id INT (11) DEFAULT NULL ,
   time DATE NOT NULL ,
   PRIMARY KEY (id) ,
-  FOREIGN KEY (course_id) REFERENCES courses(id)
+  FOREIGN KEY (course_id) REFERENCES courses(id),
+  FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
 INSERT INTO employees VALUES (NULL, "zhujiang", "male", 21, "12@qq.com", "coach");

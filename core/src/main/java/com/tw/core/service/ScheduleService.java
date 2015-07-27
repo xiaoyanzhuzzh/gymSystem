@@ -48,27 +48,28 @@ public class ScheduleService {
         return scheduleDao.getScheduleByCourse(course);
     }
 
-    public List<Schedule> getPublicSchedules(List<Course> publicCourses) {
+    public List<Schedule> getPublicSchedules(List<Schedule> schedules) {
 
         List<Schedule> publicSchedules = new ArrayList<Schedule>();
-        for(Course course: publicCourses) {
-            publicSchedules.addAll(this.getSchedulesByCourse(course));
+        for(int i = 0; i < schedules.size(); i++) {
+            if (schedules.get(i).getCustomer() == null){
+                publicSchedules.add(schedules.get(i));
+            }
         }
 
         return publicSchedules;
     }
 
-    public List<Schedule> getPrivateSchedules(List<Schedule> publicSchedules, List<Schedule> schedules) {
+    public List<Schedule> getPrivateSchedules(List<Schedule> schedules) {
 
-        for(int i = 0; i < publicSchedules.size(); i ++) {
-            for(int j = 0; j < schedules.size(); j++) {
-                if(publicSchedules.get(i).getId() == schedules.get(j).getId()) {
-                    schedules.remove(j);
-                }
+        List<Schedule> privateSchedules = new ArrayList<Schedule>();
+        for(int i = 0; i < schedules.size(); i++) {
+            if (schedules.get(i).getCustomer() != null){
+                privateSchedules.add(schedules.get(i));
             }
         }
 
-        return schedules;
+        return privateSchedules;
     }
 
 }

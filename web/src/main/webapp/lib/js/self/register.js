@@ -30,7 +30,7 @@ $(function() {
 
                 console.log(resp);
                 if(resp == 'Register Success') {
-                    location.href = '/web/employees/';
+                    window.location.href = '/web/employees/';
                 } else {
                     $('#userNameTip').val('用户名不可用');
                 }

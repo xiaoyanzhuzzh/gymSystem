@@ -41,6 +41,8 @@
                     <th>Name</th>
                     <th>Coach</th>
                     <th>Time</th>
+                    <th>Customer</th>
+                    <th>Type</th>
                     <th>Operation</th>
                 </tr>
                 </thead>
@@ -50,30 +52,21 @@
                         <td>${publicSchedule.course.name}</td>
                         <td>${publicSchedule.course.employee.name}</td>
                         <td>${publicSchedule.time}</td>
+                        <td></td>
+                        <td>public</td>
                         <td>
                             <a href="#myModal" data-toggle="modal" data-id="${publicSchedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
                             <a href="/web/schedules/${publicSchedule.id}">update</a>
                         </td>
                     </tr>
                 </c:forEach>
-                </tbody>
-            </table>
-            <table class="table table-bordered">
-                <caption><h2>私人课程表</h2></caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Coach</th>
-                    <th>Time</th>
-                    <th>Operation</th>
-                </tr>
-                </thead>
-                <tbody>
                 <c:forEach items="${privateSchedules}" var="privateSchedule">
                     <tr>
                         <td>${privateSchedule.course.name}</td>
                         <td>${privateSchedule.course.employee.name}</td>
                         <td>${privateSchedule.time}</td>
+                        <td>${privateSchedule.customer.name}</td>
+                        <td>private</td>
                         <td>
                             <a href="#myModal" data-toggle="modal" data-id="${privateSchedule.id}" class="btn btn-warning btn-sm deleteSchedule">delete</a>
                             <a href="/web/schedules/${privateSchedule.id}">update</a>

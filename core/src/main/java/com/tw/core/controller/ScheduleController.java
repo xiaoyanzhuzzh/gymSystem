@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,20 +29,17 @@ public class ScheduleController {
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getSchedules(HttpServletRequest request) {
 
-        if(request.getSession().getAttribute("currentUser") == null){
+        if(request.getSession().getAttribute("currentUser") == null) {
 
             return new ModelAndView("redirect:/login");
         } else {
 
-            ModelAndView modelAndView = new ModelAndView("schedules");
-
             List<Schedule> schedules = scheduleService.getSchedules();
-            List<Course> courses = courseService.getCourses();
+            List<Schedule> publicSchedules = scheduleService.getPublicSchedules(schedules);
+            List<Schedule> privateSchedules = scheduleService.getPrivateSchedules(schedules);
 
-            List<Course> publicCourses = courseService.getPublicCourses(courses);
-            List<Schedule> publicSchedules = scheduleService.getPublicSchedules(publicCourses);
 
-            List<Schedule> privateSchedules = scheduleService.getPrivateSchedules(publicSchedules, schedules);
+            ModelAndView modelAndView = new ModelAndView("schedules");
 
             modelAndView.addObject("publicSchedules", publicSchedules);
             modelAndView.addObject("privateSchedules", privateSchedules);
@@ -57,7 +55,9 @@ public class ScheduleController {
             return new ModelAndView("redirect:/login");
         } else {
 
-            return new ModelAndView("createSchedule", "courses", courseService.getCourses());
+            List<Course> courses = courseService.getCourses();
+
+            return new ModelAndView("createSchedule", "courses", courseService.getPublicCourses(courses));
         }
     }
 
@@ -82,9 +82,10 @@ public class ScheduleController {
             return new ModelAndView("redirect:/login");
         } else {
 
+            List<Course> courses = courseService.getCourses();
             ModelAndView modelAndView = new ModelAndView("createPrivateSchedule", "customers", customerService.getCustomers());
             modelAndView.addObject("coaches", employeeService.getAllCoaches());
-            modelAndView.addObject("courses", courseService.getCourses());
+            modelAndView.addObject("courses", courseService.getPublicCourses(courses));
             return modelAndView;
         }
     }
@@ -115,9 +116,8 @@ public class ScheduleController {
             Course currentCourse = courseService.getCourseById(courseId);
             Course newCourse  = new Course(currentCourse.getName(), employee);
             courseService.createCourse(newCourse);
-            relationService.createRelation(new CourseCustomerRelation(newCourse, customer));
 
-            scheduleService.createSchedule(new Schedule(time, newCourse));
+            scheduleService.createSchedule(new Schedule(time, newCourse, customer));
         }
 
         return new ModelAndView("redirect:/schedules/");
@@ -153,9 +153,16 @@ public class ScheduleController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String deleteUser(@PathVariable int id){
+    public String deleteSchedule(@PathVariable int id){
+
+        Schedule deleteSchedule = scheduleService.getScheduleById(id);
+        Course deleteCourse = deleteSchedule.getCourse();
+
+        Customer deleteCustomer = customerService.getCustomerByEmployee(deleteCourse.getEmployee());
+//        relationService.deleteRelationByCourseAndCustomer(deleteCourse, deleteCustomer);
 
         scheduleService.deleteScheduleById(id);
+
         return "yes";
     }
 }

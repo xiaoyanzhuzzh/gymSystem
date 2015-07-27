@@ -1,8 +1,10 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Customer;
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.util.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -45,5 +47,20 @@ public class CustomerDao {
         session.update(customer);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public Customer getCustomerByEmployee(Employee employee) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from Customer where employee=:employee";
+        Query query = session.createQuery(hql);
+
+
+        query.setParameter("employee", employee);
+
+        List<Customer> customers = query.list();
+        session.close();
+
+        return customers.get(0);
     }
 }
