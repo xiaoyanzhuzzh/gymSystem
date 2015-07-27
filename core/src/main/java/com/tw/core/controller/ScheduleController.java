@@ -1,5 +1,6 @@
 package com.tw.core.controller;
 
+import com.tw.core.dao.RelationDao;
 import com.tw.core.entity.*;
 import com.tw.core.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class ScheduleController {
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private RelationService relationService;
+    private RelationDao relationService;
 
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView getSchedules(HttpServletRequest request) {
@@ -96,8 +97,28 @@ public class ScheduleController {
 
         Employee employee = employeeService.getEmployeeById(coachId);
         List<Course> courses = courseService.getCoursesByEmployee(employee);
-        
-        scheduleService.createPrivateSchedule(courses, time, employee, customerId, courseId);
+
+        Boolean isExisted = false;
+        for(Course course: courses) {
+            isExisted = scheduleService.getScheduleByCourseAndTime(course, time);
+            if(isExisted){
+                break;
+            }
+        }
+
+        if(!isExisted) {
+
+            String name = customerService.getCustomerById(customerId).getName();
+            Customer customer = new Customer(customerId, name, employee);
+            customerService.updateCustomer(customer);
+
+            Course currentCourse = courseService.getCourseById(courseId);
+            Course newCourse  = new Course(currentCourse.getName(), employee);
+            courseService.createCourse(newCourse);
+            relationService.createRelation(new CourseCustomerRelation(newCourse, customer));
+
+            scheduleService.createSchedule(new Schedule(time, newCourse));
+        }
 
         return new ModelAndView("redirect:/schedules/");
     }
