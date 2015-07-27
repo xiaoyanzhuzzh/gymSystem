@@ -8,7 +8,8 @@
     <link href="${bootstrapCss}" rel="stylesheet" />
 </head>
 <body>
-<c:import url="layout.jsp"></c:import>
+<c:import url="layout.jsp">
+</c:import>
 <div class="jumbotron">
     <div class="container">
         <div><a class="btn btn-success" href="/web/users/create">addUser</a></div>

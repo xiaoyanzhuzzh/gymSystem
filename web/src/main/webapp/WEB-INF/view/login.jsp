@@ -15,8 +15,8 @@
     </div>
     <form class="login" id="login" action="/web/login" method="post">
         <div class="formContent">
-            <label class="labelContent" for="nickName">Nickname:</label>
-            <input type="text" id="nickName" name="nickName" placeholder="NickName">
+            <label class="labelContent" for="name">Nickname:</label>
+            <input type="text" id="name" name="name" placeholder="NickName">
         </div>
         <div class="formContent">
             <label class="labelContent" for="password">Password:</label>

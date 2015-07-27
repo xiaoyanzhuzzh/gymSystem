@@ -1,8 +1,7 @@
 package com.tw.core.service;
 
 import com.tw.core.dao.ScheduleDao;
-import com.tw.core.entity.Course;
-import com.tw.core.entity.Schedule;
+import com.tw.core.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +13,14 @@ public class ScheduleService {
 
     @Autowired
     private ScheduleDao scheduleDao;
+    @Autowired
+    private ScheduleService scheduleService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private CourseService courseService;
+    @Autowired
+    private RelationService relationService;
 
     public List<Schedule> getSchedules() {
 
@@ -70,5 +77,29 @@ public class ScheduleService {
         }
 
         return schedules;
+    }
+
+    public void createPrivateSchedule(List<Course> courses, String time, Employee employee, int customerId, int courseId) {
+        Boolean isExisted = false;
+        for(Course course: courses) {
+            isExisted = scheduleService.getScheduleByCourseAndTime(course, time);
+            if(isExisted){
+                break;
+            }
+        }
+
+        if(!isExisted) {
+
+            String name = customerService.getCustomerById(customerId).getName();
+            Customer customer = new Customer(customerId, name, employee);
+            customerService.updateCustomer(customer);
+
+            Course currentCourse = courseService.getCourseById(courseId);
+            Course newCourse  = new Course(currentCourse.getName(), employee);
+            courseService.createCourse(newCourse);
+            relationService.createRelation(new CourseCustomerRelation(newCourse, customer));
+
+            scheduleService.createSchedule(new Schedule(time, newCourse));
+        }
     }
 }
