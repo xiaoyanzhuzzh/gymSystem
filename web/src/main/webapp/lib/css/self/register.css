@@ -14,7 +14,7 @@ body {
     height: 200px;
     padding: 80px;
 }
-form#register.register {
+form#register {
     display: inline-block;
     vertical-align:top;
     padding: 20px 0 20px 0;

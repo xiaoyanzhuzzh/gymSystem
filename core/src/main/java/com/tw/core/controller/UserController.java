@@ -73,7 +73,7 @@ public class UserController {
         return new ModelAndView("redirect:/users/");
     }
 
-    @RequestMapping(value = "/  {id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteUser(@PathVariable int id){
 
         userService.deleteUserById(id);
